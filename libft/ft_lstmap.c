@@ -6,7 +6,7 @@ t_list	*ft_lstmap(t_list	*lst, void	*(*f)(void *), void	(*del)(void *))
 	t_list	*tmp;
 	t_list	*n_next;
 
-	if (lst  == '\0' || f == '\0' || del =='\0')
+	if (lst  == '\0')
 		return (0);
 	if ((ret = ft_lstnew(f(lst->content))) == '\0')
 		return (0);

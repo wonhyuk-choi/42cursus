@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/01/05 21:39:16 by wonchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void *ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	void	*tmp;
 
@@ -19,5 +31,5 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 		while (n--)
 			*(char *)--dest = *(char *)--src;
 	}
-	return(tmp);
+	return (tmp);
 }

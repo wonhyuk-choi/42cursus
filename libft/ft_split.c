@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/01/05 22:38:11 by wonchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static size_t	word_count(char const *s, char c)
@@ -21,35 +33,35 @@ static size_t	word_count(char const *s, char c)
 	return (cnt);
 }
 
-static void	ft_partcopy(char	*ret, char const	*s, size_t	begin,	size_t	end)
+static void		ft_partcopy(char *ret, char const *s, size_t begin, size_t end)
 {
 	size_t	i;
 
 	i = 0;
 	while (begin < end)
 	{
-		ret[i] = s[begin]
+		ret[i] = s[begin];
 		i++;
 		begin++;
 	}
 	ret[i] = '\0';
 }
 
-static char	**memfree(char	**ret, size_t	size)
+static char		**memfree(char **ret, size_t size)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < size)
 	{
-		free(ret[i])
+		free(ret[i]);
 		i++;
 	}
 	free(ret);
 	return (0);
 }
 
-static void	**split(char const	*s, char	c, char	**ret)
+static void		**split(char const *s, char c, char **ret)
 {
 	size_t	i;
 	size_t	j;
@@ -75,7 +87,7 @@ static void	**split(char const	*s, char	c, char	**ret)
 	ret[j] = '\0';
 }
 
-char **ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**ret;
 	size_t	i;

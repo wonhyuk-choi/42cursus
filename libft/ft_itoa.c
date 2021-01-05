@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/01/05 22:43:45 by wonchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static int	ft_len_check(int	n, int	sign)
+static int	ft_len_check(int n, int sign)
 {
 	int	len;
 
@@ -15,7 +27,7 @@ static int	ft_len_check(int	n, int	sign)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char			*ret;
 	unsigned int	len;
@@ -27,7 +39,7 @@ char	*ft_itoa(int n)
 		save = n;
 	len = ft_len_check(save, n);
 	if (!(ret = (char*)malloc(sizeof(char) * len + 1)))
-			return (0);
+		return (0);
 	ret[len] = '\0';
 	if (n < 0)
 		ret[0] = '-';

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/01/05 21:37:41 by wonchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char			*ret;
 	unsigned int	len;
@@ -14,7 +26,7 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (0);
 	while (s[i])
 	{
-		ret[i] = f(i,s[i]);
+		ret[i] = f(i, s[i]);
 		i++;
 	}
 	ret[i] = '\0';

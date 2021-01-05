@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/01/05 21:38:41 by wonchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int		is_set(char c, char const *set)
@@ -11,7 +23,7 @@ int		is_set(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const	*s1, char const	*set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*ret;
 	char	*start;
@@ -27,7 +39,7 @@ char	*ft_strtrim(char const	*s1, char const	*set)
 	while (start < end && is_set(*(end - 1), set))
 		end--;
 	len = end - start + 1;
-	if(!(ret = malloc(len)))
+	if (!(ret = malloc(len)))
 		return (0);
 	ft_strlcpy(ret, start, len);
 	return (ret);

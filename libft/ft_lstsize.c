@@ -6,18 +6,18 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/06 14:40:07 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/06 15:37:11 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ibft.h"
+#include "libft.h"
 
 int	ft_lstsize(t_list *lst)
 {
 	int	num;
 
 	num = 0;
-	while (lst != '\0')
+	while (lst != 0)
 	{
 		lst = lst->next;
 		num++;

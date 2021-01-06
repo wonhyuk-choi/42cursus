@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/05 22:38:11 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/06 14:19:42 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char		**memfree(char **ret, size_t size)
 	return (0);
 }
 
-static void		**split(char const *s, char c, char **ret)
+static char		**split(char const *s, char c, char **ret)
 {
 	size_t	i;
 	size_t	j;
@@ -76,7 +76,7 @@ static void		**split(char const *s, char c, char **ret)
 		{
 			while (s[i] != '\0' && s[i] != c)
 				i++;
-			if (!(ret[j] = (char *)malloc(sizeof(char) * (i - begin + 1))) == 0)
+			if (!(ret[j] = (char *)malloc(sizeof(char) * (i - begin + 1))))
 				return (memfree(ret, j));
 			ft_partcopy(ret[j], s, begin, i);
 			j++;
@@ -84,7 +84,8 @@ static void		**split(char const *s, char c, char **ret)
 		else if (s[i] != '\0')
 			i++;
 	}
-	ret[j] = '\0';
+	ret[j] = 0;
+	return (ret);
 }
 
 char			**ft_split(char const *s, char c)
@@ -92,14 +93,14 @@ char			**ft_split(char const *s, char c)
 	char	**ret;
 	size_t	i;
 
-	if (s == '\0')
+	if (s == 0)
 		return (0);
 	i = word_count(s, c);
 	if (!(ret = (char **)malloc(sizeof(char *) * (i + 1))))
 		return (0);
-	ret[i] = '\0';
+	ret[i] = 0;
 	if (i == 0)
 		return (ret);
-	split(s, c, ret);
+	ret = split(s, c, ret);
 	return (ret);
 }

@@ -6,11 +6,11 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/05 18:35:46 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/06 14:29:24 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libfr.h"
+#include "libft.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
@@ -28,7 +28,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	{
 		big_tmp = (char*)big;
 		little_tmp = (char*)little;
-		while (*little_tmp && *big_tmp == little_tmp)
+		while (*little_tmp && *big_tmp == *little_tmp)
 		{
 			little_tmp++;
 			big_tmp++;

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/05 19:34:36 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/06 14:37:54 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 		tmp = next;
 	}
 	*lst = 0;
-}

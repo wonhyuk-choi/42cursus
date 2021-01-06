@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/06 14:29:24 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/06 16:50:55 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,17 @@
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	little_len;
-	char	*big_tmp;
-	char	*little_tmp;
+	size_t	i;
 
 	if (!*little)
 		return ((char*)big);
+	i = 0;
 	little_len = ft_strlen(little);
-	if (!ft_strlen(big) || len < little_len)
-		return (0);
-	len = len - little_len - 1;
-	while (len-- && *big != '\0')
+	while (*big && little_len + i <= len)
 	{
-		big_tmp = (char*)big;
-		little_tmp = (char*)little;
-		while (*little_tmp && *big_tmp == *little_tmp)
-		{
-			little_tmp++;
-			big_tmp++;
-		}
-		if (*little_tmp == 0)
-			return ((char*)big);
-		big++;
+		if (ft_strncmp(big + i, little, little_len) == 0)
+			return ((char*)(big + i));
+		i++;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/06 14:32:05 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/06 18:33:01 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,18 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*tmp;
+	char			*tmp;
+	unsigned int	sub_len;
 
-	if (!s || ft_strlen(s) < start || !len)
+	if (!s || ft_strlen(s) < start || len == 0)
 		return (ft_strdup(""));
-	if (!(tmp = malloc(len + 1)))
+	sub_len = ft_strlen(s) - start;
+	if (sub_len < len)
+		tmp = (char*)malloc(sizeof(char) * (sub_len + 1));
+	else
+		tmp = (char*)malloc(sizeof(char) * (len + 1));
+	if (tmp == 0)
 		return (0);
-	ft_strlcpy(tmp, s + start, len);
+	ft_strlcpy(tmp, s + start, len + 1);
 	return (tmp);
 }

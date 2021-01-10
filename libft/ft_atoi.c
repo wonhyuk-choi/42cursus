@@ -6,24 +6,33 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/06 17:02:54 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/07 19:19:39 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_space(int nbr)
+static int	is_space(int nbr)
 {
 	while ((nbr >= 9 && nbr <= 13) || nbr == 32)
 		return (1);
 	return (0);
 }
 
+static int	check_over(long long num, int sign)
+{
+	if (num > LLONG_MAX - 1 && sign == -1)
+		return (0);
+	if (num > LLONG_MAX && sign == 1)
+		return (-1);
+	return (num * sign);
+}
+
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	num;
+	long long	i;
+	int			sign;
+	long long	num;
 
 	i = 0;
 	sign = 1;
@@ -41,6 +50,5 @@ int	ft_atoi(const char *nptr)
 		num = num * 10 + (nptr[i] - '0');
 		i++;
 	}
-	num = num * sign;
-	return (num);
+	return (check_over(num, sign));
 }

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 18:40:52 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/05 19:57:16 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/07 19:22:40 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
+# include <limits.h>
 
 typedef	struct		s_list
 {

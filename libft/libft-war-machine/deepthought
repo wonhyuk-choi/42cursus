@@ -3,7 +3,7 @@ $> hostname; uname -msr
 choewonhyeog-ui-MacBookPro.local
 Darwin 20.1.0 arm64
 $> date
-2021년 1월  6일 수요일 18시 59분 18초 KST
+2021년 1월  7일 목요일 19시 26분 57초 KST
 $> gcc --version
 Apple clang version 12.0.0 (clang-1200.0.32.28)
 Target: arm64-apple-darwin20.1.0
@@ -60,7 +60,7 @@ gcc -Wall -Wextra -Werror -c ft_strlcpy.c -o ft_strlcpy.o
 ar rc libft.a ft_memmove.o ft_strlen.o ft_memset.o ft_strmapi.o ft_atoi.o ft_putchar_fd.o ft_strncmp.o ft_bzero.o ft_putendl_fd.o ft_strnstr.o ft_calloc.o ft_putnbr_fd.o ft_strrchr.o ft_isalnum.o ft_putstr_fd.o ft_strtrim.o ft_isalpha.o ft_split.o ft_substr.o ft_isascii.o ft_strchr.o ft_tolower.o ft_isdigit.o ft_memccpy.o ft_strdup.o ft_toupper.o ft_isprint.o ft_memchr.o ft_strjoin.o ft_itoa.o ft_memcmp.o ft_strlcat.o ft_memcpy.o ft_strlcpy.o
 
 $> ls -la libft.a
--rw-r--r--  1 wonchoi  staff  29432  1  6 18:59 /Users/wonchoi/42cursus/libft-war-machine/dirlibft/libft.a
+-rw-r--r--  1 wonchoi  staff  29592  1  7 19:26 /Users/wonchoi/42cursus/libft/libft-war-machine/dirlibft/libft.a
 
 = Part1_functions ==============================================================
 
@@ -1453,7 +1453,7 @@ $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_lstclear.c main.c libft
 
 Undefined symbols for architecture arm64:
   "_ft_lstdelone", referenced from:
-      _ft_lstclear in ft_lstclear-043bfe.o
+      _ft_lstclear in ft_lstclear-7d674d.o
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
@@ -1510,9 +1510,9 @@ $> clang -Wextra -Wall -Werror -g3 -fsanitize=address ft_lstmap.c main.c libft.a
 
 Undefined symbols for architecture arm64:
   "_ft_lstclear", referenced from:
-      _ft_lstmap in ft_lstmap-6f58b5.o
+      _ft_lstmap in ft_lstmap-11ad45.o
   "_ft_lstnew", referenced from:
-      _ft_lstmap in ft_lstmap-6f58b5.o
+      _ft_lstmap in ft_lstmap-11ad45.o
      (maybe you meant: _ft_lstnewone)
 ld: symbol(s) not found for architecture arm64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)

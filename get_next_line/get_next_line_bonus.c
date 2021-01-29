@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 22:50:36 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/15 16:43:05 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/16 18:59:53 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_end(char **backup, char **line)
 int	get_next_line(int fd, char **line)
 {
 	char		*buff;
-	static char	*backup[OPEN_MAX];
+	static char	*backup[256];
 	int			fdnum;
 	int			check;
 

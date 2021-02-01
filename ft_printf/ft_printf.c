@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 00:23:46 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/31 23:22:38 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/01 19:49:22 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ static void	init_format_list(t_format *form)
 	form->dot = -1;
 	form->width = 0;
 	form->type = 0;
+	form->null = 0;
 }
 
-char		*check_form(t_format *form_info, const char *form)
+char		*check_form(t_format *form_info)
 {
 	char	*form_str;
 	char	check;
@@ -66,7 +67,12 @@ void		parse(t_format *form_info, const char *form, int *ret)
 				;
 			if (!(form_info->type = *(form)++))
 				break ;
-			str = check_form(form_info, form);
+			str = check_form(form_info);
+			*ret += ft_strlen(str) + (form_info->null != 0);
+			ft_putstr_fd(str, 1);
+			free(str);
+			if (form_info->null > 0)
+				ft_putchar_fd(0, 1);
 		}
 	}
 }

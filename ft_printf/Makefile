@@ -7,25 +7,29 @@ LIBFT_LIB = libft.a
 AR = ar rc
 RM = rm -f
 
-SRCS =
+SRCS = ft_printf.c ft_printf_utils.c print_c.c format_read.c
 OBJS = $(SRCS:.c=.o)
 
-all = $(NAME)
+all : $(NAME)
+
+$(NAME) : $(OBJS)
+	make all -C $(LIBFT)/
+	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
+	$(AR) $(NAME) $^
+
+bonus : all
 
 %o: %.c $(HEADER)
 	$(cc) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
-	make all -C $(LIBFT)/
-	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
-	$(AR) $(NAME) $(OBJS)
-
-clean:
+clean :
 	make clean -C $(LIBFT)
 	$(RM) $(OBJS)
 
-fclean: clean
+fclean : clean
 	make fclean -C $(LIBFT)
 	$(RM) $(NAME)
 
-re: fclean all
+re : fclean all
+
+.phony = make clean fclean re

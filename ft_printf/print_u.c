@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   print_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/01 19:05:10 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/04 20:32:26 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/02/04 20:15:46 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/02/04 20:35:55 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 static int	check_len(long long num, int len)
 {
-	return (num ? 1 + check_len(num / len, len) : 0);
+	int ret;
+
+	if (num > 0)
+		ret = 1 + check_len(num / len, len);
+	else
+		ret = 0;
+	return (ret);
 }
 
-char	*utoa(unsigned long long num, char base[16])
+static void	*dtoa(unsigned long long num, char base[10])
 {
-	int		len;
-	char	*ret;
-	int		base_len;
-
-	base_len = 16;
+	int					len;
+	int					base_len;
+	char				*ret;
+	
+	base_len = 10;
 	len = 1 + check_len(num / base_len, base_len);
 	ret = malloc(len + 1);
 	ret[len] = 0;
@@ -32,41 +38,28 @@ char	*utoa(unsigned long long num, char base[16])
 		len--;
 		ret[len] = base[(num % base_len)];
 		num = num / base_len;
-		
 	}
 	return (ret);
 }
 
-void	join_zero(char **form_str, int num)
+static void	check_uform(char **form_str, t_format *form_info)
 {
-	char	*left;
-	char	*right;
-
-	left = save_str('0', num);
-	right = *form_str;
-	*form_str = join_str(left, right);
 }
 
-char	*save_str(char c, int count)
+void	check_form_u(char **form_str, t_format *form_info)
 {
-	char	*str;
+	unsigned int		num;
+	char				base[10];
 
-	str = malloc(count + 1);
-	str[count] = 0;
-	while (count > 0)
+	num = 0;
+	while (num < 10)
 	{
-		count--;
-		str[count] = c;
+		base[num] = num + 48;
+		num++;
 	}
-	return (str);
-}
-
-char	*join_str(char *left, char *right)
-{
-	char	*ret;
-
-	ret = ft_strjoin(left, right);
-	free(left);
-	free(right);
-	return (ret);
+	num = va_arg(form_info->ap, unsigned int);
+	*form_str = dtoa(num, base);
+	if (num == 0 & form_info->dot == 0)
+		(*form_str)[0] = 0;
+	check_uform(form_str, form_info);
 }

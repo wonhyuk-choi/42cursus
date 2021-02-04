@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 15:31:00 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/31 17:14:49 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/02 17:52:03 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	read_flag(const char **form, t_format *form_info)
 		form_info->zero = 1;
 	else
 		return (0);
-	(*form)++;
+	++(*form);
 	return (1);
 }
 
@@ -40,13 +40,13 @@ int	read_width(const char **form, t_format *form_info)
 			form_info->minus = 1;
 			form_info->width *= -1;
 		}
-		(*form)++;
+		++(*form);
 	}
 	else if (ft_isdigit(c))
 	{
 		form_info->width = ft_atoi(*form);
-		while (ft_isdigit(c))
-			(*form)++;
+		while (ft_isdigit(**form))
+			++(*form);
 	}
 	else
 		return (0);
@@ -64,15 +64,13 @@ int	read_dot(const char **form, t_format *form_info)
 	if (c == '*')
 	{
 		form_info->dot = va_arg(form_info->ap, int);
-		(*form)++;
+		++(*form);
 	}
 	else if (ft_isdigit(c))
 	{
 		form_info->dot = ft_atoi(*form);
-		while (ft_isdigit(c))
-			(*form)++;
+		while (ft_isdigit(**form))
+			++(*form);
 	}
-	else
-		return (0);
 	return (1);
 }

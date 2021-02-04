@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 18:32:06 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/01 19:50:03 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/04 20:01:14 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void			check_form_u(char **form_str, t_format *form_info);
 void			check_form_x(char **form_str, t_format *form_info);
 void			check_form_lx(char **form_str, t_format *form_info);
 
+char			*utoa(unsigned long long num, char *base);
 char			*save_str(char c, int count);
 char			*join_str(char *lest, char *right);
+void			join_zero(char **form_str, int num);
+
 
 #endif

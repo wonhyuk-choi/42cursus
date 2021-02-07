@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:08:39 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/04 20:26:56 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/05 15:27:40 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	check_detail_join(char **form_str, t_format *form_info, int num)
 {
-	char			*left;
+	char				*left;
 	char				*right;
 	char				c;
 

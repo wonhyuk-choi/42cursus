@@ -7,7 +7,14 @@ LIBFT_LIB = libft.a
 AR = ar rc
 RM = rm -f
 
-SRCS = ft_printf.c ft_printf_utils.c print_c.c print_x.c format_read.c
+SRCS =	ft_printf.c			\
+		ft_printf_utils.c	\
+		print_c.c			\
+		print_x.c			\
+		print_u.c			\
+		print_p.c			\
+		print_di.c			\
+		format_read.c
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)

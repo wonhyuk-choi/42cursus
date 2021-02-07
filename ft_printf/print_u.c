@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 20:15:46 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/04 20:35:55 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/05 17:09:27 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_len(long long num, int len)
 {
-	int ret;
+	int 				ret;
 
 	if (num > 0)
 		ret = 1 + check_len(num / len, len);
@@ -23,7 +23,7 @@ static int	check_len(long long num, int len)
 	return (ret);
 }
 
-static void	*dtoa(unsigned long long num, char base[10])
+ char		*dtoa(unsigned long long num, char base[10])
 {
 	int					len;
 	int					base_len;
@@ -42,8 +42,39 @@ static void	*dtoa(unsigned long long num, char base[10])
 	return (ret);
 }
 
+static void	check_detail_join(char **form_str, t_format *form_info, int num)
+{
+	char				*left;
+	char				*right;
+	char				c;
+
+	if (form_info->minus)
+	{
+		left = *form_str;
+		right = save_str(' ', num);
+	}
+	else
+	{
+		if (form_info->zero && form_info->dot < 0)
+			c = '0';
+		else
+			c = ' ';
+		left = save_str(c, num);
+		right = *form_str;
+	}
+	*form_str = join_str(left, right);
+}
+
 static void	check_uform(char **form_str, t_format *form_info)
 {
+	int					num;
+
+	num = form_info->dot - (int)ft_strlen(*form_str);
+	if (num > 0)
+		join_zero(form_str, num);
+	num = form_info->width - (int)ft_strlen(*form_str);
+	if (num > 0)
+		check_detail_join(form_str, form_info, num);
 }
 
 void	check_form_u(char **form_str, t_format *form_info)

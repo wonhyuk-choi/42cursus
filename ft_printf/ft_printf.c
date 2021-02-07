@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 00:23:46 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/04 20:10:09 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 14:58:13 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ char		*check_form(t_format *form_info)
 		check_form_c(&form_str, va_arg(form_info->ap, int), form_info);
 	else if (check == 's')
 		check_form_s(&form_str, form_info);
-//	else if (check == 'd' || check == 'i')
-//		check_form_di(&form_str, form_info);
-//	else if (check == 'p')
-//		check_form_p(&form_str, form_info);
-//	else if (check == 'u')
-//		check_form_u(&form_str, form_info);
+	else if (check == 'd' || check == 'i')
+		check_form_di(&form_str, form_info);
+	else if (check == 'p')
+		check_form_p(&form_str, form_info);
+	else if (check == 'u')
+		check_form_u(&form_str, form_info);
 	else if (check == 'x')
 		check_form_x(&form_str, form_info);
 	else if (check == 'X')
@@ -97,11 +97,10 @@ int			ft_printf(const char *form, ...)
 int main()
 {
 	long long s;
-	long long	i;
+	int	i;
 
 	i = 96;
-	s = 42949671;
-	printf("pf = %llx\n",i);
-	ft_printf("ft_pf = %c %X", i, i);
+	printf("pf = %04d\n", i);
+	ft_printf("ft_pf = %04d", i);
 	return (0);
-}*/
+} */

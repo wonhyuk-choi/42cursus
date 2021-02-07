@@ -6,13 +6,13 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:03:04 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/05 17:01:38 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 20:38:46 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void check_detail_join(char **form_str, t_format *form_info, int num)
+static void	check_detail_join(char **form_str, t_format *form_info, int num)
 {
 	char				*left;
 	char				*right;
@@ -30,7 +30,7 @@ static void check_detail_join(char **form_str, t_format *form_info, int num)
 	*form_str = join_str(left, right);
 }
 
-static void check_pform(char **form_str, t_format *form_info)
+static void	check_pform(char **form_str, t_format *form_info)
 {
 	int					num;
 	char				*tmp;
@@ -46,7 +46,7 @@ static void check_pform(char **form_str, t_format *form_info)
 		check_detail_join(form_str, form_info, num);
 }
 
-void	check_form_p(char **form_str, t_format *form_info)
+void		check_form_p(char **form_str, t_format *form_info)
 {
 	unsigned long long	num;
 	char				base[16];

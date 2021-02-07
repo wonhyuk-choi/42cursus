@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 17:03:11 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/07 14:57:43 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 18:00:48 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	check_diform(char **form_str, t_format *form_info, int flag)
 	join_space(form_str, form_info);
 }
 
-void	check_form_di(char **form_str, t_format *form_info)
+void		check_form_di(char **form_str, t_format *form_info)
 {
 	long long	num;
 	int			flag;
@@ -103,7 +103,7 @@ void	check_form_di(char **form_str, t_format *form_info)
 		*form_str = dtoa(-num, base);
 	else
 		*form_str = dtoa(num, base);
-	if (num == 0 &&form_info->dot == 0)
+	if (num == 0 && form_info->dot == 0)
 		(*form_str)[0] = 0;
 	check_diform(form_str, form_info, flag);
 }

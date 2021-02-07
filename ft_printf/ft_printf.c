@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 00:23:46 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/07 14:58:13 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 17:48:59 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,21 @@ char		*check_form(t_format *form_info)
 	return (form_str);
 }
 
-void		parse(t_format *form_info, const char *form, int *ret)
+static void	str_putchar(t_format *form_info, int *ret)
 {
 	char	*str;
 
+	str = check_form(form_info);
+	*ret += ft_strlen(str) + (form_info->null != 0);
+	ft_putstr_fd(str, 1);
+	free(str);
+	str = 0;
+	if (form_info->null > 0)
+		ft_putchar_fd(0, 1);
+}
+
+void		parse(t_format *form_info, const char *form, int *ret)
+{
 	while (*form)
 	{
 		if (*form != '%')
@@ -62,18 +73,12 @@ void		parse(t_format *form_info, const char *form, int *ret)
 		{
 			form++;
 			init_format_list(form_info);
-			while (read_flag(&form, form_info) || read_width(&form, form_info) ||
-					read_dot(&form, form_info))
+			while (read_flag(&form, form_info) ||
+					read_width(&form, form_info) || read_dot(&form, form_info))
 				;
 			if (!(form_info->type = *(form++)))
 				break ;
-			str = check_form(form_info);
-			*ret += ft_strlen(str) + (form_info->null != 0);
-			ft_putstr_fd(str, 1);
-			free(str);
-			str = 0;
-			if (form_info->null > 0)
-				ft_putchar_fd(0, 1);
+			str_putchar(form_info, ret);
 		}
 	}
 }
@@ -92,15 +97,3 @@ int			ft_printf(const char *form, ...)
 	free(form_info);
 	return (ret);
 }
-/*
-#include "stdio.h"
-int main()
-{
-	long long s;
-	int	i;
-
-	i = 96;
-	printf("pf = %04d\n", i);
-	ft_printf("ft_pf = %04d", i);
-	return (0);
-} */

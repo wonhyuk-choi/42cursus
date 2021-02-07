@@ -6,13 +6,13 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 18:19:05 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/02 17:58:45 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 20:39:00 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void check_string(char **form_str, int count, t_format *form_info)
+static void	check_string(char **form_str, int count, t_format *form_info)
 {
 	char	*left;
 	char	*right;
@@ -33,7 +33,7 @@ static void check_string(char **form_str, int count, t_format *form_info)
 	*form_str = join_str(left, right);
 }
 
-void	check_form_c(char **form_str, char c, t_format *form_info)
+void		check_form_c(char **form_str, char c, t_format *form_info)
 {
 	int		count;
 
@@ -49,10 +49,9 @@ void	check_form_c(char **form_str, char c, t_format *form_info)
 	count = form_info->width - 1;
 	if (count > 0)
 		check_string(form_str, count, form_info);
-	
 }
 
-void	check_form_s(char **form_str, t_format *form_info)
+void		check_form_s(char **form_str, t_format *form_info)
 {
 	int		count;
 

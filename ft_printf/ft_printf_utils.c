@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 19:05:10 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/04 20:32:26 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 18:01:16 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_len(long long num, int len)
 	return (num ? 1 + check_len(num / len, len) : 0);
 }
 
-char	*utoa(unsigned long long num, char base[16])
+char		*utoa(unsigned long long num, char base[16])
 {
 	int		len;
 	char	*ret;
@@ -32,12 +32,11 @@ char	*utoa(unsigned long long num, char base[16])
 		len--;
 		ret[len] = base[(num % base_len)];
 		num = num / base_len;
-		
 	}
 	return (ret);
 }
 
-void	join_zero(char **form_str, int num)
+void		join_zero(char **form_str, int num)
 {
 	char	*left;
 	char	*right;
@@ -47,7 +46,7 @@ void	join_zero(char **form_str, int num)
 	*form_str = join_str(left, right);
 }
 
-char	*save_str(char c, int count)
+char		*save_str(char c, int count)
 {
 	char	*str;
 
@@ -61,7 +60,7 @@ char	*save_str(char c, int count)
 	return (str);
 }
 
-char	*join_str(char *left, char *right)
+char		*join_str(char *left, char *right)
 {
 	char	*ret;
 

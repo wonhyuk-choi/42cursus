@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 18:32:06 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/05 17:09:51 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/07 20:40:21 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ char			*utoa(unsigned long long num, char base[16]);
 char			*save_str(char c, int count);
 char			*join_str(char *lest, char *right);
 void			join_zero(char **form_str, int num);
-
 
 #endif

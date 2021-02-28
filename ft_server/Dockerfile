@@ -8,7 +8,6 @@ RUN		apt-get -y upgrade
 RUN		apt-get install -y \
 		nginx \
 		mariadb-server \
-		mariadb-client \
 		php-mysql \
 		php-mbstring \
 		openssl \

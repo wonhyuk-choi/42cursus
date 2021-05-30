@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:03:04 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/02/07 20:38:46 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/02/08 10:35:26 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		check_form_p(char **form_str, t_format *form_info)
 		base[num] = num + 87;
 		num++;
 	}
-	num = (unsigned long long)va_arg(form_info->ap, long long);
+	num = va_arg(form_info->ap, long long);
 	*form_str = utoa(num, base);
 	if (num == 0 && form_info->dot == 0)
 		(*form_str)[0] = 0;

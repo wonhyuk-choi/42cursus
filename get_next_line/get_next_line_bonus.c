@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 22:50:36 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/01/16 18:59:53 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/03/21 23:33:03 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int	ft_end(char **backup, char **line)
 {
 	int	index;
 
-	if (*backup && (index = ft_is_enter(*backup)) >= 0)
+	index = ft_is_enter(*backup);
+	if (*backup && index >= 0)
 		return (ft_split_line(backup, line, index));
-	else if (*backup)	
+	else if (*backup)
 	{
 		*line = *backup;
 		*backup = 0;
@@ -69,18 +70,21 @@ int	get_next_line(int fd, char **line)
 	int			fdnum;
 	int			check;
 
-	buff = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (fd < 0 || !line || !buff || BUFFER_SIZE < 1)
 		return (-1);
-	while ((fdnum = read(fd, buff, BUFFER_SIZE)) > 0)
+	fdnum = read(fd, buff, BUFFER_SIZE);
+	while (fdnum > 0)
 	{
 		buff[fdnum] = '\0';
 		backup[fd] = ft_strjoin(backup[fd], buff);
-		if ((check = ft_is_enter(backup[fd])) >= 0)
+		check = ft_is_enter(backup[fd]);
+		if (check >= 0)
 		{
 			free(buff);
 			return (ft_split_line(&backup[fd], line, check));
 		}
+		fdnum = read(fd, buff, BUFFER_SIZE);
 	}
 	free(buff);
 	if (fdnum < 0)

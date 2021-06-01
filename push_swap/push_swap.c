@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:49:26 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/01 16:39:00 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 19:22:00 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ t_frame	*create_frame(t_frame *frame, char **argv)
 	frame->quarter_1 = 0;
 	frame->median = 0;
 	frame->quarter_3 = 0;
+	frame->after_rotate = 0;
+	frame->big_flag = 0;
+	frame->small_flag = 0;
 	return (frame);
 }
 
@@ -37,6 +40,8 @@ void	solve_fn(t_frame *frame)
 {
 	if (check_stack_len(frame, 'a') <= 5)
 		under_5(frame);
+	else if (check_stack_len(frame, 'a') <= 100)
+		under_100(frame);
 }
 
 int	check_frame(t_frame *frame)

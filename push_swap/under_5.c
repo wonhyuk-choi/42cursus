@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 13:59:50 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/01 16:35:41 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 18:59:58 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	solve_3(t_frame *frame)
 	t_node	*tmp;
 
 	find_biggest(frame, 'a');
-	move_bottom(frame, 'a', 2);
+	bottom_to_top(frame, 'a', 2);
 	if (frame->big_rrotate >= 1)
 		while (frame->big_rrotate-- > 1)
 			do_rra(frame);

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 18:58:20 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 19:41:33 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 14:35:37 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	do_pa(t_frame *frame)
 {
-	int	num;
+	long long	num;
 
-	if (frame->a)
+	if (frame->b)
 	{
-		num = frame->a->value;
+		num = frame->b->value;
 		stack_del_top(frame, 'b');
 		stack_add_top(frame, 'a', num);
 	}
@@ -27,7 +27,7 @@ void	do_pa(t_frame *frame)
 
 void    do_pb(t_frame *frame)
 {
-	int	num;
+	long long	num;
 
 	if (frame->a)
 	{

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 14:15:03 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 16:37:13 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 16:35:11 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	do_sb(t_frame *frame)
 		frame->a->value = frame->a->next->value;
 		frame->a->next->value = tmp;
 	}
-	write(1, "sa\n", 3);
+	write(1, "sb\n", 3);
 }
 
 void	do_ss(t_frame *frame)

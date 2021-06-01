@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 19:00:07 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 19:32:25 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 15:43:44 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,25 @@ typedef struct	s_frame
 	long long		smallest;
 	int				small_rotate;
 	int				small_rrotate;
+	long long		median;
+	long long		quarter_1;
+	long long		quarter_3;
+	int				stack_len;
 }				t_frame;
 
 void	fill_stack_a(t_frame *frame);
 void	push_swap_error(t_frame *frame);
 void	stack_add_end(t_frame *frame, char c, long long num);
 void	stack_del_top(t_frame *frame, char stack_name);
-void	stack_add_top(t_frame *frame, char stack_name, int num);
+void	stack_add_top(t_frame *frame, char stack_name, long long num);
 
 int		check_stack_len(t_frame *frame, char stack_name);
 
 void	find_smallest(t_frame *frame, char stack_name);
 void	find_biggest(t_frame *frame, char stack_name);
 void	find_small_big(t_frame *frame, char stack_name);
+
+void	median_value(t_frame *frame, char stack_name);
 
 void	under_5(t_frame *frame);
 void	under_100(t_frame *frame);

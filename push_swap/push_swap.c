@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:49:26 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 17:25:21 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 16:39:00 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ t_frame	*create_frame(t_frame *frame, char **argv)
 	frame->big_rrotate = 0;
 	frame->small_rotate = 0;
 	frame->small_rrotate = 0;
+	frame->stack_len = 0;
+	frame->quarter_1 = 0;
+	frame->median = 0;
+	frame->quarter_3 = 0;
 	return (frame);
 }
 

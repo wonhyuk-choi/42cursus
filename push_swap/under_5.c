@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 13:59:50 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 19:43:21 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/01 16:35:41 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,31 @@ static void solve_4(t_frame *frame)
 	do_pa(frame);
 }
 
+static void	solve_5(t_frame *frame)
+{
+	t_node	*a_stack_end;
+	t_node	*tmp;
+	int		flag;
+
+	flag = 0;
+	a_stack_end = frame->a->prev;
+	median_value(frame, 'a');
+	while (flag != 1)
+	{
+		flag = frame->a == a_stack_end ? 1 : 0;
+		if (frame->a->value < frame->median)
+			do_pb(frame);
+		else
+			do_ra(frame);
+	}
+	solve_3(frame);
+	tmp = frame->b->next;
+	if (frame->b->value < tmp->value)
+		do_sb(frame);
+	do_pa(frame);
+	do_pa(frame);
+}
+
 void	under_5(t_frame *frame)
 {
 	if (check_stack_len(frame, 'a') == 2)
@@ -58,7 +83,6 @@ void	under_5(t_frame *frame)
 		solve_3(frame);
 	else if (check_stack_len(frame, 'a') == 4)
 		solve_4(frame);
-/*	else
+	else
 		solve_5(frame);
-		*/
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   under_100.c                                        :+:      :+:    :+:   */
+/*   over_100.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/01 18:31:30 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/02 12:22:03 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/06/02 12:10:19 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/06/02 14:54:53 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	before_push_a(t_frame *frame, t_node *stack, t_node *stack_end)
 	}
 }
 
-void	under_100(t_frame *frame)
+void	over_100(t_frame *frame)
 {
 	int	cnt;
 
@@ -61,7 +61,7 @@ void	under_100(t_frame *frame)
 	median_value(frame, 'a');
 	while (frame->a)
 	{
-		push_median(frame, cnt);
+		push_one_six(frame, frame->a, cnt);
 		while (frame->b)
 		{
 			find_small_big(frame, 'b');
@@ -74,7 +74,7 @@ void	under_100(t_frame *frame)
 		while (--frame->after_rotate)
 			do_ra(frame);
 		cnt++;
-		if (cnt == 3)
+		if (cnt == 7)
 			break ;
 	}
 }

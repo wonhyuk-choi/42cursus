@@ -6,13 +6,13 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 00:42:10 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 12:13:48 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/02 01:39:37 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void free_all(t_node *node)
+static void	free_all(t_node *node)
 {
 	t_node	*next_node;
 	t_node	*del;	
@@ -20,10 +20,10 @@ static void free_all(t_node *node)
 	if (node)
 	{
 		next_node = node->next;
-		while (node->next != node)
+		while (next_node != node)
 		{
 			del = next_node;
-			next_node = node->next;
+			next_node = next_node->next;
 			free(del);
 		}
 		free(next_node);
@@ -34,6 +34,8 @@ static void	free_frame(t_frame *frame)
 {
 	if (frame->a)
 		free_all(frame->a);
+	if (frame->b)
+		free_all(frame->b);
 	free(frame);
 }
 

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/01 19:31:07 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/01 19:43:39 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/02 01:39:27 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	push_median(t_frame *frame, int	cnt)
 	{
 		if (stack == stack_end)
 			flag = 1;
-		else if (cnt == 1 && stack->value <= frame->median)
+		if (cnt == 1 && stack->value <= frame->median)
 			do_pb(frame);
 		else if (cnt == 2 && stack->value > frame->median)
 			do_pb(frame);
@@ -36,7 +36,7 @@ void	push_median(t_frame *frame, int	cnt)
 			do_ra(frame);
 		if (flag == 1)
 			break ;
-		stack = stack->next;
+		stack = frame->a;
 	}
 	reset_move_value(frame);
 }

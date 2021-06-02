@@ -1,24 +1,20 @@
-NAME = push_swap.out
+NAME = push_swap
 HEADER = push_swap.h
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LIBFT = libft
-LIBFT_LIB = libft.a
+LIB = ./libft/libft.a
+LIB_PATH = ./libft
 AR = ar rc
 RM = rm -f
 
-SRCS =	fill_stack_a.c			\
-		push_swap.c				\
-		push_swap_error.c		\
-		fill_stack_a.c			
+SRCS = $(wildcard *.c)		
 OBJS = $(SRCS:.c=.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	make all -C $(LIBFT)/
-	cp $(LIBFT)/$(LIBFT_LIB) $(NAME)
-	$(AR) $(NAME) $^
+	make -C $(LIB_PATH)
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
 
 bonus : all
 
@@ -26,11 +22,11 @@ bonus : all
 	$(cc) $(CFLAGS) -c $< -o $@
 
 clean :
-	make clean -C $(LIBFT)
+	make clean -C $(LIB_PATH)
 	$(RM) $(OBJS)
 
 fclean : clean
-	make fclean -C $(LIBFT)
+	make fclean -C $(LIB_PATH)
 	$(RM) $(NAME)
 
 re : fclean all

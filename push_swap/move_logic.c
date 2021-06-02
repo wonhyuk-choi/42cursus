@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 15:53:57 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/01 19:25:20 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/02 01:39:20 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	move_smallest(t_frame *frame, char stack_name)
 	if (stack)
 	{
 		top_to_bottom(frame, stack_name, flag);
-		bottom_to_top(frame, stack_name,flag);
+		bottom_to_top(frame, stack_name, flag);
 		if (frame->small_rotate <= frame->small_rrotate)
 			frame->small_rrotate = -1;
 		else

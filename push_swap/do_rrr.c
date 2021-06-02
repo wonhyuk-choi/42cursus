@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/30 16:27:42 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 16:39:51 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/02 01:38:49 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	do_rrb(t_frame *frame)
 {
 	if (frame->b)
 		frame->b = frame->b->prev;
-	write(1, "rrb\n", 3);
+	write(1, "rrb\n", 4);
 }
 
 void	do_rrr(t_frame *frame)

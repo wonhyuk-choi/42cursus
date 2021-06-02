@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:49:26 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/02 15:06:17 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/02 15:13:42 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,12 @@ static void	push_swap(t_frame *frame)
 int	main(int argc, char **argv)
 {
 	t_frame	*frame;
-	t_node *test;
 
 	frame = NULL;
 	if (argc < 2)
 		return (1);
 	frame = create_frame(frame, argv);
 	push_swap(frame);
-	int i = 7;
-	test = frame->a;
-	while (i--)
-	{
-		printf("%lld\n", test->value);
-		test = test->next;
-	}
 	push_swap_free(frame);
 	return (0);
 }

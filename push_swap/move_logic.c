@@ -14,9 +14,9 @@
 
 void	bottom_to_top(t_frame *frame, char stack_name, int flag)
 {
-	t_node  *tmp;
-	t_node  *stack;
-	int     num;
+	t_node	*tmp;
+	t_node	*stack;
+	int		num;
 
 	stack = (stack_name == 'a') ? frame->a : frame->b;
 	if (stack)
@@ -37,9 +37,9 @@ void	bottom_to_top(t_frame *frame, char stack_name, int flag)
 
 void	top_to_bottom(t_frame *frame, char stack_name, int flag)
 {
-	t_node *tmp;
-	t_node *stack;
-	int	num;
+	t_node	*tmp;
+	t_node	*stack;
+	int		num;
 
 	stack = (stack_name == 'a') ? frame->a : frame->b;
 	if (stack)

@@ -32,7 +32,7 @@ static long long	atoi_push_swap(t_frame *frame, char *str)
 	while (str[i] == '0')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
-	{	
+	{
 		num = num * 10 + (str[i] - '0');
 		i++;
 		len++;
@@ -41,7 +41,7 @@ static long long	atoi_push_swap(t_frame *frame, char *str)
 	return (num * sign);
 }
 
-static	void	check_dup(t_frame *frame)
+static	void		check_dup(t_frame *frame)
 {
 	t_node	*start;
 	t_node	*end;
@@ -52,7 +52,7 @@ static	void	check_dup(t_frame *frame)
 		end = start->next;
 		while (end != frame->a)
 		{
-			if(start->value == end->value)
+			if (start->value == end->value)
 				push_swap_error(frame);
 			end = end->next;
 		}
@@ -60,7 +60,7 @@ static	void	check_dup(t_frame *frame)
 	}
 }
 
-static void	fill_a_stack(t_frame *frame, char *str, int i, int j)
+static void			fill_a_stack(t_frame *frame, char *str, int i, int j)
 {
 	long long	test_int_size;
 
@@ -87,7 +87,7 @@ static void	fill_a_stack(t_frame *frame, char *str, int i, int j)
 		push_swap_error(frame);
 }
 
-static void	error_parse(t_frame *frame)
+static void			error_parse(t_frame *frame)
 {
 	char	*str;
 	int		i;
@@ -113,7 +113,7 @@ static void	error_parse(t_frame *frame)
 	}
 }
 
-void	fill_stack_a(t_frame *frame)
+void				fill_stack_a(t_frame *frame)
 {
 	char	*str;
 	int		i;

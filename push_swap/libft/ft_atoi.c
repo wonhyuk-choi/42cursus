@@ -28,7 +28,7 @@ static int	check_over(long long num, int sign)
 	return (num * sign);
 }
 
-int	ft_atoi(const char *nptr)
+int			ft_atoi(const char *nptr)
 {
 	long long	i;
 	int			sign;

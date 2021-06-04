@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_rr.c                                            :+:      :+:    :+:   */
+/*   push_one_six_sub.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/30 16:27:42 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/05/30 16:37:08 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/06/02 12:22:22 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/06/04 14:30:38 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_ra(t_frame *frame)
+void	fourth_split(t_frame *frame)
 {
-	if (frame->a)
-		frame->a = frame->a->next;
-	write(1, "ra\n", 3);
+	if (frame->b && frame->b->value > ((frame->median / 6) * 7))
+		do_rb(frame);
+	do_pb(frame);
 }
 
-void	do_rb(t_frame *frame)
+void	fifth_split(t_frame *frame)
 {
-	if (frame->b)
-		frame->b = frame->b->next;
-	write(1, "rb\n", 3);
+	if (frame->b && frame->b->value > (frame->median / 6 * 9))
+		do_rb(frame);
+	do_pb(frame);
 }
 
-void	do_rr(t_frame *frame)
+void	sixth_split(t_frame *frame)
 {
-	do_ra(frame);
-	do_rb(frame);
-	write(1, "rr\n", 3);
+	if (frame->b && frame->b->value > (frame->median / 6 * 11))
+		do_rb(frame);
+	do_pb(frame);
 }

@@ -29,7 +29,7 @@ static int	ft_len_check(int n)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
 	char		*ret;
 	long long	len;

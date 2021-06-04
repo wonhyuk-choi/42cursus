@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	is_set(char c, char const *set)
+int		is_set(char c, char const *set)
 {
 	while (*set)
 	{

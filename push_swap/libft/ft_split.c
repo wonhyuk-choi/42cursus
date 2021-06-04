@@ -33,7 +33,7 @@ static size_t	word_count(char const *s, char c)
 	return (cnt);
 }
 
-static void	ft_partcopy(char *ret, char const *s, size_t begin, size_t end)
+static void		ft_partcopy(char *ret, char const *s, size_t begin, size_t end)
 {
 	size_t	i;
 
@@ -47,7 +47,7 @@ static void	ft_partcopy(char *ret, char const *s, size_t begin, size_t end)
 	ret[i] = '\0';
 }
 
-static char	**memfree(char **ret, size_t size)
+static char		**memfree(char **ret, size_t size)
 {
 	size_t	i;
 
@@ -61,7 +61,7 @@ static char	**memfree(char **ret, size_t size)
 	return (0);
 }
 
-static char	**split(char const *s, char c, char **ret)
+static char		**split(char const *s, char c, char **ret)
 {
 	size_t	i;
 	size_t	j;
@@ -89,7 +89,7 @@ static char	**split(char const *s, char c, char **ret)
 	return (ret);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	char	**ret;
 	size_t	i;

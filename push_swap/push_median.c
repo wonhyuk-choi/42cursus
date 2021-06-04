@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	push_median(t_frame *frame, int	cnt)
+void	push_median(t_frame *frame, int cnt)
 {
 	t_node	*stack;
 	t_node	*stack_end;

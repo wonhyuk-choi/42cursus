@@ -53,7 +53,7 @@ static void	before_push_a(t_frame *frame, t_node *stack, t_node *stack_end)
 	}
 }
 
-void	over_100(t_frame *frame)
+void		over_100(t_frame *frame)
 {
 	int	cnt;
 

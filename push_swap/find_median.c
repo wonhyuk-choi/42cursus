@@ -55,7 +55,7 @@ static void	find_median_value(t_frame *frame, t_node *stack, char stack_name)
 	free(array);
 }
 
-void	median_value(t_frame *frame, char stack_name)
+void		median_value(t_frame *frame, char stack_name)
 {
 	t_node	*stack;
 

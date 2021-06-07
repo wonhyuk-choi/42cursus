@@ -19,7 +19,7 @@ static void	solve_2(t_frame *frame)
 }
 
 static void	solve_3(t_frame *frame)
-{	
+{
 	t_node	*stack_a;
 	t_node	*tmp;
 
@@ -34,10 +34,10 @@ static void	solve_3(t_frame *frame)
 		do_sa(frame);
 }
 
-static void solve_4(t_frame *frame)
+static void	solve_4(t_frame *frame)
 {
 	t_node	*stack_a;
-	
+
 	stack_a = frame->a;
 	find_small_big(frame, 'a');
 	while (stack_a->value != frame->smallest)
@@ -75,7 +75,7 @@ static void	solve_5(t_frame *frame)
 	do_pa(frame);
 }
 
-void	under_5(t_frame *frame)
+void		under_5(t_frame *frame)
 {
 	if (check_stack_len(frame, 'a') == 2)
 		solve_2(frame);

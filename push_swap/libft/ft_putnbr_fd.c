@@ -22,7 +22,7 @@ static void	printing_nbr(int n, int fd)
 	write(fd, &c, 1);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+void		ft_putnbr_fd(int n, int fd)
 {
 	if (fd < 0)
 		return ;

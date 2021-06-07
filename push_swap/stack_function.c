@@ -14,8 +14,8 @@
 
 void	stack_add_end(t_frame *frame, char c, long long num)
 {
-	t_node  **top;
-	t_node  *tmp;
+	t_node	**top;
+	t_node	*tmp;
 
 	if (c == 'a')
 		top = &frame->a;
@@ -41,7 +41,7 @@ void	stack_add_end(t_frame *frame, char c, long long num)
 	}
 }
 
-void    stack_add_top(t_frame *frame, char stack_name, long long num)
+void	stack_add_top(t_frame *frame, char stack_name, long long num)
 {
 	t_node	**top;
 	t_node	*tmp;

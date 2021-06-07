@@ -6,14 +6,14 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/27 18:49:26 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/02 15:13:42 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/04 15:37:29 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-t_frame	*create_frame(t_frame *frame, char **argv)
+t_frame		*create_frame(t_frame *frame, char **argv)
 {
 	if (!(frame = malloc(sizeof(t_frame))))
 		exit(1);
@@ -34,7 +34,7 @@ t_frame	*create_frame(t_frame *frame, char **argv)
 	return (frame);
 }
 
-int	check_frame(t_frame *frame)
+int			check_frame(t_frame *frame)
 {
 	t_node	*tmp;
 
@@ -50,7 +50,7 @@ int	check_frame(t_frame *frame)
 	return (1);
 }
 
-void	solve_fn(t_frame *frame)
+void		solve_fn(t_frame *frame)
 {
 	if (!(check_frame(frame)))
 	{
@@ -73,7 +73,7 @@ static void	push_swap(t_frame *frame)
 	}
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_frame	*frame;
 

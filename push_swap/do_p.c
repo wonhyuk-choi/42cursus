@@ -25,7 +25,7 @@ void	do_pa(t_frame *frame)
 	write(1, "pa\n", 3);
 }
 
-void    do_pb(t_frame *frame)
+void	do_pb(t_frame *frame)
 {
 	long long	num;
 
@@ -35,5 +35,5 @@ void    do_pb(t_frame *frame)
 		stack_del_top(frame, 'a');
 		stack_add_top(frame, 'b', num);
 	}
-	write (1, "pb\n", 3);
+	write(1, "pb\n", 3);
 }

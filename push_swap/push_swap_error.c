@@ -15,7 +15,7 @@
 static void	free_all(t_node *node)
 {
 	t_node	*next_node;
-	t_node	*del;	
+	t_node	*del;
 
 	if (node)
 	{
@@ -39,12 +39,12 @@ static void	free_frame(t_frame *frame)
 	free(frame);
 }
 
-void	push_swap_free(t_frame *frame)
+void		push_swap_free(t_frame *frame)
 {
 	free_frame(frame);
 }
 
-void	push_swap_error(t_frame *frame)
+void		push_swap_error(t_frame *frame)
 {
 	write(2, "Error\n", 6);
 	push_swap_free(frame);

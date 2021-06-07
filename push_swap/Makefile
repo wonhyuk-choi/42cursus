@@ -4,7 +4,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIB = ./libft/libft.a
 LIB_PATH = ./libft
-AR = ar rc
 RM = rm -f
 
 SRCS = $(wildcard *.c)		

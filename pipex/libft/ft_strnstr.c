@@ -1,58 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/03/21 20:04:18 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/03/21 19:41:45 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_check(int n)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	long long	len;
-	long long	num;
+	size_t	little_len;
+	size_t	i;
 
-	num = n;
-	len = 0;
-	if (num < 0)
-		num = num * -1;
-	while (num > 0)
+	if (!*little)
+		return ((char *)big);
+	i = 0;
+	little_len = ft_strlen(little);
+	while (*big && little_len + i <= len)
 	{
-		num = num / 10;
-		len++;
+		if (ft_strncmp(big + i, little, little_len) == 0)
+			return ((char *)(big + i));
+		i++;
 	}
-	return (len);
-}
-
-char		*ft_itoa(int n)
-{
-	char		*ret;
-	long long	len;
-	long long	save;
-
-	len = ft_len_check(n);
-	save = n;
-	if (n <= 0)
-	{
-		save = -save;
-		len++;
-	}
-	ret = (char *)malloc(sizeof(char) * len + 1);
-	if (ret == 0)
-		return (0);
-	ret[len] = 0;
-	while (len > 0)
-	{
-		ret[len - 1] = (save % 10) + '0';
-		save = save / 10;
-		len--;
-	}
-	if (n < 0)
-		ret[0] = '-';
-	return (ret);
+	return (0);
 }

@@ -1,58 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/03/21 20:04:18 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/03/21 19:57:15 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_check(int n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	long long	len;
-	long long	num;
+	t_list	*ret;
+	t_list	*tmp;
+	t_list	*n_next;
 
-	num = n;
-	len = 0;
-	if (num < 0)
-		num = num * -1;
-	while (num > 0)
-	{
-		num = num / 10;
-		len++;
-	}
-	return (len);
-}
-
-char		*ft_itoa(int n)
-{
-	char		*ret;
-	long long	len;
-	long long	save;
-
-	len = ft_len_check(n);
-	save = n;
-	if (n <= 0)
-	{
-		save = -save;
-		len++;
-	}
-	ret = (char *)malloc(sizeof(char) * len + 1);
+	if (lst == 0)
+		return (0);
+	ret = ft_lstnew(f(lst->content));
 	if (ret == 0)
 		return (0);
-	ret[len] = 0;
-	while (len > 0)
+	tmp = ret;
+	lst = lst->next;
+	while (lst)
 	{
-		ret[len - 1] = (save % 10) + '0';
-		save = save / 10;
-		len--;
+		n_next = ft_lstnew(f(lst->content));
+		if (n_next == 0)
+		{
+			ft_lstclear(&ret, del);
+			return (0);
+		}
+		tmp->next = n_next;
+		tmp = n_next;
+		lst = lst->next;
 	}
-	if (n < 0)
-		ret[0] = '-';
 	return (ret);
 }

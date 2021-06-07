@@ -1,58 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/03/21 20:04:18 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/01/05 19:58:15 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_check(int n)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	long long	len;
-	long long	num;
-
-	num = n;
-	len = 0;
-	if (num < 0)
-		num = num * -1;
-	while (num > 0)
+	while (n > 0)
 	{
-		num = num / 10;
-		len++;
+		*(char *)dest = *(char *)src;
+		n--;
+		dest++;
+		if (*(unsigned char *)src == (unsigned char)c)
+			return (dest);
+		src++;
 	}
-	return (len);
-}
-
-char		*ft_itoa(int n)
-{
-	char		*ret;
-	long long	len;
-	long long	save;
-
-	len = ft_len_check(n);
-	save = n;
-	if (n <= 0)
-	{
-		save = -save;
-		len++;
-	}
-	ret = (char *)malloc(sizeof(char) * len + 1);
-	if (ret == 0)
-		return (0);
-	ret[len] = 0;
-	while (len > 0)
-	{
-		ret[len - 1] = (save % 10) + '0';
-		save = save / 10;
-		len--;
-	}
-	if (n < 0)
-		ret[0] = '-';
-	return (ret);
+	return (0);
 }

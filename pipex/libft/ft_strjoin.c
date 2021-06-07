@@ -1,58 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 17:51:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/03/21 20:04:18 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/03/21 19:52:02 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_len_check(int n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	long long	len;
-	long long	num;
+	size_t	len;
+	char	*tmp;
 
-	num = n;
-	len = 0;
-	if (num < 0)
-		num = num * -1;
-	while (num > 0)
-	{
-		num = num / 10;
-		len++;
-	}
-	return (len);
-}
-
-char		*ft_itoa(int n)
-{
-	char		*ret;
-	long long	len;
-	long long	save;
-
-	len = ft_len_check(n);
-	save = n;
-	if (n <= 0)
-	{
-		save = -save;
-		len++;
-	}
-	ret = (char *)malloc(sizeof(char) * len + 1);
-	if (ret == 0)
+	if (s1 == 0 || s2 == 0)
 		return (0);
-	ret[len] = 0;
-	while (len > 0)
-	{
-		ret[len - 1] = (save % 10) + '0';
-		save = save / 10;
-		len--;
-	}
-	if (n < 0)
-		ret[0] = '-';
-	return (ret);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	tmp = malloc(len);
+	if (tmp == 0)
+		return (0);
+	ft_strlcpy(tmp, s1, len);
+	ft_strlcat(tmp, s2, len);
+	return (tmp);
 }

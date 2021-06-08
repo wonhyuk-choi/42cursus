@@ -23,14 +23,14 @@ SRCS = srcs/main.c \
 	srcs/parse/gnl/get_next_line.c \
 	srcs/parse/gnl/get_next_line_utils.c
 
-OBJS = $(addprefix objs/, $(subst srcs/, , $(SRCS:.c=.o)))
+OBJS = $(addprefix objs/, $(notdir $(SRCS:.c=.o)))
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
 	make -C minilibx
 	cp minilibx/libmlx.dylib libmlx.dylib
-	$(CC) $(FLAG) objs/*.o libmlx.dylib -o $(NAME)
+	$(CC) $(FLAG) $(OBJS) libmlx.dylib -o $(NAME)
 
 $(OBJS) : $(SRCS)
 	$(CC) $(FLAG) -c $(SRCS)

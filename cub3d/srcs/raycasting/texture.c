@@ -6,7 +6,7 @@
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:24 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/07 14:39:48 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/04 20:52:24 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ t_texture		**set_texture(void *mlx, char **list)
 	int			i;
 	t_texture	**t;
 
-	t = (t_texture **)malloc(sizeof(t_texture *) * 4);
+	t = (t_texture **)malloc(sizeof(t_texture *) * 5);
 	if (!t)
 		return (0);
-	i = 4;
+	i = 5;
 	while (--i >= 0)
 		t[i] = 0;
 	while (++i < 4)

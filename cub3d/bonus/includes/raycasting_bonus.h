@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RAYCASTING_H
-# define RAYCASTING_H
+#ifndef RAYCASTING_BONUS_H
+# define RAYCASTING_BONUS_H
 
-# include "parse.h"
-# include "player.h"
-# include "texture.h"
+# include "parse_bonus.h"
+# include "player_bonus.h"
+# include "texture_bonus.h"
 
 typedef struct	s_dda
 {
@@ -48,6 +48,7 @@ typedef struct	s_cub3d
 
 char			ray_casting(t_cub3d *cub3d, t_player *player, t_parse *data);
 
+int				mouse_pos(int x, int y, t_cub3d *cub3d);
 int				x_icon(t_cub3d *cub3d);
 int				key_press(int keycode, t_cub3d *cub3d);
 int				key_release(int keycode, t_cub3d *cub3d);
@@ -56,7 +57,7 @@ int				active_apply(t_cub3d *cub3d);
 void			set_wall_draw_point(t_dda *dda, t_parse *data);
 void			set_dda_value(t_dda *dda, t_player *player, int resolution
 , int x);
-void			hit_wall(t_dda *dda, char **map, double *pos);
-char			*select_texture(t_texture **texture, t_dda *dda);
+char			hit_wall(t_dda *dda, char **map, double *pos);
+char			*select_texture(t_texture **texture, t_dda *dda, char door_flag);
 
 #endif

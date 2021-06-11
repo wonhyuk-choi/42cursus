@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parse_bonus.h"
 
 static char	check_png(char *line)
 {
@@ -67,9 +67,9 @@ static char	*read_color(t_parse *data, char *line, int flag)
 		//parse_atoi 함수는 반환값으로 ','의 개수를 반환하다. ','의 개수로 만들어진 color가 정상적인지 판단한다.
 		if (tmp_color > 255)
 			return ("invalid color");
-		data->color[flag - 4] += tmp_color;
+		data->color[flag - 5] += tmp_color;
 		if (i != 2)
-			data->color[flag - 4] = data->color[flag - 4] << 8;
+			data->color[flag - 5] = data->color[flag - 5] << 8;
 		i++;
 	}
 	if (tmp != 2 || *line)
@@ -92,9 +92,9 @@ char		*set_identifier(t_parse *data, char *line, int flag)
 		line++;
 	//위쪽의 반복문들은 앞서 check_flag에서 읽었던 부분들을 넘겨주기 위함이다. ex) 'EA '
 	//아래 조건문은 벽에 사용될 texture의 경로를 처리하는 함수이다.
-	if (flag >= 0 && flag <= 3)
+	if (flag >= 0 && flag <= 4)
 		error = set_wall_texture_path(data, line, flag);
-	else if (flag == 4 || flag == 5)
+	else if (flag == 5 || flag == 6)
 		error = read_color(data, line, flag);
 	//위 조건문은 천장과 바닥에 사용될 색상을 읽어 저장하는 함수이다.
 	free(save);

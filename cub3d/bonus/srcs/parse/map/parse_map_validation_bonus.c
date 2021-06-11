@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parse_bonus.h"
 
 static int	check_around(char **map, int col, int row)
 {
@@ -35,7 +35,7 @@ static char	*set_elem(t_parse *data, int col, int row)
 	cur = data->worldmap[col][row];
 	if (cur == ' ' || cur == '1')
 		return (0);
-	else if (cur != '0')
+	else if (cur != '0' && cur != '2')
 	{
 		if (data->direction)
 			return ("player reduplication error");
@@ -61,7 +61,7 @@ char		*check_map_validation(t_parse *data, int max)
 		row = 0;
 		while (++row < max - 1)
 		{
-			if (!find_chr(" 01WENS", data->worldmap[col][row]))
+			if (!find_chr(" 012WENS", data->worldmap[col][row]))
 				return ("invalid map");
 			error = set_elem(data, col, row);
 			if (error)

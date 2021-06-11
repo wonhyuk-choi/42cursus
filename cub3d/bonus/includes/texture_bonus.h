@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURE_H
-# define TEXTURE_H
+#ifndef TEXTURE_BONUS_H
+# define TEXTURE_BONUS_H
 
 # include "mlx.h"
 # include <math.h>

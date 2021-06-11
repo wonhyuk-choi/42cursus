@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "parse_bonus.h"
 
 void		free_data(t_parse *data)
 {
@@ -40,7 +40,7 @@ static char	init_parse(t_parse **data)
 	*data = malloc(sizeof(t_parse));
 	if (!*data)
 		return (0);
-	(*data)->texture_path = malloc(sizeof(char *) * 5);
+	(*data)->texture_path = malloc(sizeof(char *) * 6);
 	(*data)->worldmap = malloc(sizeof(char *) * 21);
 	if (!(*data)->texture_path || !(*data)->worldmap)
 		return (0);
@@ -48,7 +48,7 @@ static char	init_parse(t_parse **data)
 	while (i < 21)
 		(*data)->worldmap[i++] = 0;
 	i = 0;
-	while (i < 5)
+	while (i < 6)
 		(*data)->texture_path[i++] = 0;
 	(*data)->direction = 0;
 	i = 0;
@@ -74,11 +74,13 @@ static int	check_flag(char *line)
 		return (2);
 	else if (*line == 'E' && *(line + 1) == 'A' && *(line + 2) == ' ')
 		return (3);
-	else if (*line == 'F' && *(line + 1) == ' ')
+	else if (*line == 'D' && *(line + 1) == ' ')
 		return (4);
-	else if (*line == 'C' && *(line + 1) == ' ')
+	else if (*line == 'F' && *(line + 1) == ' ')
 		return (5);
-	return (6);
+	else if (*line == 'C' && *(line + 1) == ' ')
+		return (6);
+	return (7);
 }
 
 static char	*set_data(t_parse *data, char *line, unsigned char *check)
@@ -96,7 +98,7 @@ static char	*set_data(t_parse *data, char *line, unsigned char *check)
 			free(line);
 			return (0);
 		}
-		if (flag == 6)
+		if (flag == 7)
 			return ("invalid identifier");
 		//아래 연산은 check_flag 함수를 통해 받아온 flag의 수만큼 check의 값을 비트연산해주는 과정이다.
 		//만약 flag가 3으로 'EA'값을 받은 경우 check값의 3번째 위치인 a위치를 검사해주어야 한다. (1100 a000)
@@ -130,7 +132,7 @@ char		*parse(t_parse **data, char *map_path)
 	if (fd == -1)
 		return ("invalid map path");
 	//0xc0 = 1100 0000을 의미한다. 이 값은 이후 identifier를 검사하는 경우 중복체크와 map 파싱과정으로 넘어가는 경우에 사용된다.
-	check = 0xc0;
+	check = 0x80;
 	while (1)
 	{
 		result = get_next_line(fd, &line);

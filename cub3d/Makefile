@@ -4,7 +4,9 @@ CC = gcc
 
 HEAD = -I includes -I minilibx
 
-FLAG = -Wall -Wextra -Werror $(HEAD) -g3 -fsanitize=address
+BONUS_HEAD = -I bonus/includes -I minilibx
+
+FLAG = -Wall -Wextra -Werror $(HEAD) $(BONUS_HEAD) -g3 -fsanitize=address
 
 RM = rm -rf
 
@@ -23,7 +25,14 @@ SRCS = srcs/main.c \
 	srcs/parse/gnl/get_next_line.c \
 	srcs/parse/gnl/get_next_line_utils.c
 
-OBJS = $(addprefix objs/, $(notdir $(SRCS:.c=.o)))
+BONUS_SRCS = $(addprefix bonus/, $(SRCS:.c=_bonus.c))
+
+OBJS = $(SRCS:.c=.o)
+
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+
+.c.o :
+	$(CC) $(FLAG) -c $< -o $(<:.c=.o)
 
 all : $(NAME)
 
@@ -32,12 +41,13 @@ $(NAME) : $(OBJS)
 	cp minilibx/libmlx.dylib libmlx.dylib
 	$(CC) $(FLAG) $(OBJS) libmlx.dylib -o $(NAME)
 
-$(OBJS) : $(SRCS)
-	$(CC) $(FLAG) -c $(SRCS)
-	mv -f *.o objs
+bonus : $(BONUS_OBJS)
+	make -C minilibx
+	cp minilibx/libmlx.dylib libmlx.dylib
+	$(CC) $(FLAG) $(BONUS_OBJS) libmlx.dylib -o $(NAME)
 
 clean :
-	$(RM) objs/*.o
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	make clean -C minilibx

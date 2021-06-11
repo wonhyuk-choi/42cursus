@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "main_bonus.h"
 
 static void		error_print(t_cub3d *cub3d, char *message)
 {
@@ -25,6 +25,7 @@ static void		run_program(t_cub3d *cub3d)
 	mlx_hook(cub3d->window, KEY_PRESS, 0, key_press, cub3d);
 	mlx_hook(cub3d->window, KEY_RELEASE, 0, key_release, cub3d);
 	mlx_hook(cub3d->window, XICON_PRESS, 0, x_icon, cub3d);
+	mlx_hook(cub3d->window, MOUSE_MOVE, 0, mouse_pos, cub3d);
 	mlx_loop_hook(cub3d->mlx, active_apply, cub3d);
 	mlx_loop(cub3d->mlx);
 }

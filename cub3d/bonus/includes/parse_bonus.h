@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_H
-# define PARSE_H
+#ifndef PARSE_BONUS_H
+# define PARSE_BONUS_H
 
 # include <fcntl.h>
-# include "get_next_line.h"
+# include "get_next_line_bonus.h"
 # include <math.h>
 # include <stdio.h>
 

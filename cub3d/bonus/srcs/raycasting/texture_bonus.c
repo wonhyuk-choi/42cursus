@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "texture.h"
+#include "texture_bonus.h"
 
 t_texture		**set_texture(void *mlx, char **list)
 {
 	int			i;
 	t_texture	**t;
 
-	t = (t_texture **)malloc(sizeof(t_texture *) * 5);
+	t = (t_texture **)malloc(sizeof(t_texture *) * 6);
 	if (!t)
 		return (0);
-	i = 5;
+	i = 6;
 	while (--i >= 0)
 		t[i] = 0;
-	while (++i < 4)
+	while (++i < 5)
 	{
 		t[i] = malloc(sizeof(t_texture));
 		if (!t[i])

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "raycasting_bonus.h"
 
 static void	my_pixel_put(t_cub3d *cub, char *dst, char *ref)
 {
@@ -42,6 +42,7 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 {
 	int		x;
 	char	*dst;
+	char	door_flag;
 
 	//cub->image = mlx_new_image(cub->mlx, data->resol_x, data->resol_y);
 	//cub->adr = mlx_get_data_addr(cub->image, &(cub->bpp), &(cub->leng)
@@ -52,9 +53,9 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 	while (++x < data->resol_x)
 	{
 		set_dda_value(cub->dda, player, data->resol_x, x);
-		hit_wall(cub->dda, data->worldmap, player->pos);
+		door_flag = hit_wall(cub->dda, data->worldmap, player->pos);
 		set_wall_draw_point(cub->dda, data);
-		my_pixel_put(cub, dst, select_texture(cub->texture, cub->dda));
+		my_pixel_put(cub, dst, select_texture(cub->texture, cub->dda, door_flag));
 		dst += cub->bpp;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->image, 0, 0);

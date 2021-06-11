@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "raycasting_bonus.h"
 
 void			set_wall_draw_point(t_dda *dda, t_parse *data)
 {
@@ -23,17 +23,22 @@ void			set_wall_draw_point(t_dda *dda, t_parse *data)
 	*(dda->point + 1) = (height + screen_height) / 2;
 }
 
-char			*select_texture(t_texture **texture, t_dda *dda)
+char			*select_texture(t_texture **texture, t_dda *dda, char door_flag)
 {
 	int	tmp;
 
-	dda->cur = texture[3];
-	if (!(dda->side) && dda->ray[0] < 0)
-		dda->cur = texture[0];
-	else if (!dda->side && dda->ray[0] > 0)
-		dda->cur = texture[1];
-	else if (dda->side == 1 && dda->ray[1] < 0)
-		dda->cur = texture[2];
+	if (door_flag == '2')
+		dda->cur = texture[4];
+	else
+	{
+		dda->cur = texture[3];
+		if (!(dda->side) && dda->ray[0] < 0)
+			dda->cur = texture[0];
+		else if (!dda->side && dda->ray[0] > 0)
+			dda->cur = texture[1];
+		else if (dda->side == 1 && dda->ray[1] < 0)
+			dda->cur = texture[2];
+	}
 	dda->cur->ratio = (double)(dda->cur->size[1]);
 	dda->cur->ratio /= (double)(dda->point[1] - dda->point[0] + 1);
 	tmp = (int)(dda->wall_x * (dda->cur->size[0])) * dda->cur->bpp;
@@ -67,12 +72,12 @@ void			set_dda_value(t_dda *dda, t_player *player, int resol_x
 	dda->side = 0;
 }
 
-void			hit_wall(t_dda *dda, char **map, double *pos)
+char			hit_wall(t_dda *dda, char **map, double *pos)
 {
 	int	s;
 
 	s = 0;
-	while (map[dda->map[0]][dda->map[1]] != '1')
+	while (map[dda->map[0]][dda->map[1]] != '1' && map[dda->map[0]][dda->map[1]] != '2')
 	{
 		s = 0;
 		if (dda->sidedist[1] < dda->sidedist[0])
@@ -85,4 +90,5 @@ void			hit_wall(t_dda *dda, char **map, double *pos)
 	dda->wall_x = pos[1 - s] + dda->walldist * dda->ray[1 - s];
 	dda->wall_x -= floor(dda->wall_x);
 	dda->side = s;
+	return (map[dda->map[0]][dda->map[1]]);
 }

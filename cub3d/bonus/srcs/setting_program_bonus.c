@@ -6,7 +6,7 @@
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:00 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/12 02:13:04 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/12 02:49:57 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static char	*setting_data(t_cub3d *cub3d)
 	display_x = &cub3d->data->resol_x;
 	display_y = &cub3d->data->resol_y;
 	mlx_get_screen_size(cub3d->mlx, display_x, display_y);
+	*display_x = 1000;
+	*display_y = 800;
 	cub3d->window = mlx_new_window(cub3d->mlx, *display_x, *display_y, "cub3d");
 	if (!cub3d->window)
 		return ("mlx_new_window failed");

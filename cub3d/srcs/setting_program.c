@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setting_program.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:00 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/11 17:44:19 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/12 02:49:48 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ void		free_cub3d(t_cub3d *cub3d)
 		free(cub3d->player);
 	if (cub3d->window)
 		mlx_destroy_window(cub3d->mlx, cub3d->window);
-	if (cub3d->mlx)
-		free(cub3d->mlx);
-	free(cub3d);
 }
 
 static char	*setting_data(t_cub3d *cub3d)
@@ -37,6 +34,8 @@ static char	*setting_data(t_cub3d *cub3d)
 	display_x = &cub3d->data->resol_x;
 	display_y = &cub3d->data->resol_y;
 	mlx_get_screen_size(cub3d->mlx, display_x, display_y);
+	*display_x = 1000;
+	*display_y = 800;
 	cub3d->window = mlx_new_window(cub3d->mlx, *display_x, *display_y, "cub3d");
 	if (!cub3d->window)
 		return ("mlx_new_window failed");
@@ -52,29 +51,26 @@ static char	*setting_data(t_cub3d *cub3d)
 	return (0);
 }
 
-char		*setting_program(t_cub3d **cub3d, char *map_path)
+char		*setting_program(t_cub3d *cub3d, char *map_path)
 {
 	char	*message;
 
-	*cub3d = malloc(sizeof(t_cub3d));
-	if (!*cub3d)
-		return ("cub3d malloc failed");
-	(*cub3d)->mlx = mlx_init();
-	(*cub3d)->window = 0;
-	(*cub3d)->image = 0;
-	(*cub3d)->adr = 0;
-	(*cub3d)->bpp = 0;
-	(*cub3d)->leng = 0;
-	(*cub3d)->endian = 0;
-	(*cub3d)->data = 0;
-	(*cub3d)->texture = 0;
-	(*cub3d)->player = 0;
-	(*cub3d)->data = 0;
-	(*cub3d)->dda = 0;
-	if (!(*cub3d)->mlx)
+	cub3d->mlx = mlx_init();
+	cub3d->window = 0;
+	cub3d->image = 0;
+	cub3d->adr = 0;
+	cub3d->bpp = 0;
+	cub3d->leng = 0;
+	cub3d->endian = 0;
+	cub3d->data = 0;
+	cub3d->texture = 0;
+	cub3d->player = 0;
+	cub3d->data = 0;
+	cub3d->dda = 0;
+	if (!cub3d->mlx)
 		return ("mlx_init failed");
-	message = parse(&(*cub3d)->data, map_path);
+	message = parse(&cub3d->data, map_path);
 	if (message)
 		return (message);
-	return (setting_data(*cub3d));
+	return (setting_data(cub3d));
 }

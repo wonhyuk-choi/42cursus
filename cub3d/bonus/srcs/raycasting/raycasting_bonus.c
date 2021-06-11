@@ -6,7 +6,7 @@
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:51:53 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/12 02:04:07 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/12 03:07:30 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,7 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 	char	*dst;
 	char	d_flag;
 
-	cub->image = mlx_new_image(cub->mlx, data->resol_x, data->resol_y);
-	if (!cub->image)
+	if (!(cub->image = mlx_new_image(cub->mlx, data->resol_x, data->resol_y)))
 		return (0);
 	cub->adr = mlx_get_data_addr(cub->image, &(cub->bpp), &(cub->leng)
 	, &(cub->endian));
@@ -112,8 +111,9 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 		dst += cub->bpp;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->image, 0, 0);
+	x = draw_minimap(cub, cub->player);
 	mlx_destroy_image(cub->mlx, cub->image);
-	if (!draw_minimap(cub, cub->player))
+	if (!x)
 		return (0);
 	return (1);
 }

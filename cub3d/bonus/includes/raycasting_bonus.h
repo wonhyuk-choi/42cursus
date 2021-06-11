@@ -3,19 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:55:02 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/11 20:35:36 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/11 22:13:57 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_BONUS_H
 # define RAYCASTING_BONUS_H
 
+# define MINIMAP_COLOR_SPACE 0x0091e0f4
+# define MINIMAP_COLOR_WALL 0x000c90ad
+# define MINIMAP_COLOR_DOOR 0x00b7b7b7
+# define MINIMAP_COLOR_ROAD 0x00f8f1f9
+# define MINIMAP_COLOR_PLAYER 0x000c90ad
+
 # include "parse_bonus.h"
 # include "player_bonus.h"
 # include "texture_bonus.h"
+
+typedef struct	s_minimap
+{
+	int				y;
+	int				x;
+	char			*img;
+	unsigned int	*cur_img_ptr;
+	unsigned int	*line;
+	t_texture		texture;
+}				t_minimap;
 
 typedef struct	s_dda
 {
@@ -44,6 +60,7 @@ typedef struct	s_cub3d
 	t_player	*player;
 	t_parse		*data;
 	t_dda		*dda;
+	t_minimap	minimap;
 }				t_cub3d;
 
 char			ray_casting(t_cub3d *cub3d, t_player *player, t_parse *data);

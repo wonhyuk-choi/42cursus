@@ -3,14 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:51:53 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/11 17:41:30 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/11 22:14:58 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting_bonus.h"
+
+static void	set_minimap_pixels(t_cub3d *cub3d
+, t_minimap *minimap, t_player *player)
+{
+	int			i;
+	int			j;
+
+	i = -1;
+	while (++i < minimap->y)
+	{
+		j = -1;
+		minimap->line = minimap->cur_img_ptr;
+		while (++j < minimap->x)
+		{
+			if (cub3d->data->worldmap[i / 10][j / 10] == ' ')
+				*minimap->line = MINIMAP_COLOR_SPACE;
+			else if (cub3d->data->worldmap[i / 10][j / 10] == '1')
+				*minimap->line = MINIMAP_COLOR_WALL;
+			else if (cub3d->data->worldmap[i / 10][j / 10] == '2')
+				*minimap->line = MINIMAP_COLOR_DOOR;
+			else if (cub3d->data->worldmap[i / 10][j / 10] == '0')
+				*minimap->line = MINIMAP_COLOR_ROAD;
+			if (i / 10 == (int)player->pos[0] && j / 10 == (int)player->pos[1])
+				*minimap->line = MINIMAP_COLOR_PLAYER;
+			minimap->line++;
+		}
+		minimap->cur_img_ptr += minimap->texture.leng;
+	}
+}
+
+static int	draw_minimap(t_cub3d *cub3d, t_player *player)
+{
+	t_minimap	*minimap;
+	t_texture	t;
+
+	minimap = &(cub3d->minimap);
+	minimap->y = (cub3d->data->col_size + 1) * 10 + 10;
+	minimap->x = (cub3d->data->row_max + 1) * 10 + 10;
+	if (!(minimap->img = mlx_new_image(cub3d->mlx, minimap->x, minimap->y)))
+		return (0);
+	t.image = minimap->img;
+	t.adr = mlx_get_data_addr(t.image, &(t.bpp), &(t.leng), &(t.endi));
+	t.leng /= 4;
+	minimap->cur_img_ptr = (unsigned int *)t.adr;
+	minimap->texture = t;
+	set_minimap_pixels(cub3d, minimap, player);
+	mlx_put_image_to_window(cub3d->mlx, cub3d->window, t.image, 0, 0);
+	mlx_destroy_image(cub3d->mlx, cub3d->minimap.img);
+	cub3d->minimap.img = 0;
+	return (1);
+}
 
 static void	my_pixel_put(t_cub3d *cub, char *dst, char *ref)
 {
@@ -60,6 +111,8 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 		dst += cub->bpp;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->image, 0, 0);
+	if (!draw_minimap(cub, cub->player))
+		return (0);
 	mlx_destroy_image(cub->mlx, cub->image);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:52 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/11 21:07:23 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/11 21:51:24 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ int	key_press(int keycode, t_cub3d *cub3d)
 	if (keycode == 123 || keycode == 124)
 		cub3d->player->key[keycode - 119] = 1;
 	if (keycode == 45)
+	{
 		cub3d->player->mouse_switch = 1 - cub3d->player->mouse_switch;
+		if (!cub3d->player->mouse_switch)
+			cub3d->player->key[6] = 0;
+	}
 	return (0);
 }
 

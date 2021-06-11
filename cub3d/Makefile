@@ -28,6 +28,7 @@ SRCS = srcs/main.c \
 BONUS_SRCS = bonus/srcs/main_bonus.c \
 	bonus/srcs/setting_program_bonus.c \
 	bonus/srcs/raycasting/player_bonus.c \
+	bonus/srcs/raycasting/player_utils_bonus.c \
 	bonus/srcs/raycasting/raycasting_bonus.c \
 	bonus/srcs/raycasting/raycasting_utils_bonus.c \
 	bonus/srcs/raycasting/key_bonus.c \

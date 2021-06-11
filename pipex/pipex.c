@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 16:10:10 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/07 17:47:26 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/08 17:59:22 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ static void	cmd_run(char *argv, t_cmd *frame)
 	i = 0;
 	cmd_init(argv, frame);
 	while (i < 5)
+	{
 		execve(frame->cmd[i++], frame->argv, frame->envp);
+	}
 	perror(frame->argv[0]);
 }
 

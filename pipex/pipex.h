@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 16:10:05 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/07 17:39:14 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/08 18:41:49 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@
 
 typedef struct	s_cmd
 {
-	const char		**cmd;
+	const char		*cmd[5];
 	char* const		*argv;
-	char* const		*envp;
 }				t_cmd;
 
 int				error_wrtie(char *str);

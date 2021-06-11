@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/02 12:10:19 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/02 14:54:53 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/04 17:36:56 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,27 +32,6 @@ static void	rotate_push_a(t_frame *frame)
 	reset_move_value(frame);
 }
 
-static void	before_push_a(t_frame *frame, t_node *stack, t_node *stack_end)
-{
-	while (1)
-	{
-		while (stack->value != frame->smallest
-			&& stack->value != frame->biggest)
-			stack = stack->next;
-		if (stack->value == frame->smallest
-			|| stack->value == frame->biggest)
-		{
-			rotate_push_a(frame);
-			break ;
-		}
-		else
-			stack = stack->next;
-		if (stack == stack_end)
-			break ;
-		stack = frame->b;
-	}
-}
-
 void		over_100(t_frame *frame)
 {
 	int	cnt;
@@ -69,7 +48,7 @@ void		over_100(t_frame *frame)
 			if (frame->b && (frame->small_rotate >= 0
 					|| frame->small_rrotate >= 0 || frame->big_rotate >= 0
 					|| frame->big_rrotate >= 0))
-				before_push_a(frame, frame->b, frame->b->prev);
+				rotate_push_a(frame);
 		}
 		while (--frame->after_rotate)
 			do_ra(frame);

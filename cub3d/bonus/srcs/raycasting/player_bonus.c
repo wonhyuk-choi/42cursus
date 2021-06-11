@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 21:00:57 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/09 17:00:20 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 21:32:40 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player_bonus.h"
 
-t_player	*set_player(int *location, char dir)
+t_player	*set_player(int *location, char dir, int x)
 {
 	t_player	*player;
-	double		seta;
 
 	player = malloc(sizeof(t_player));
 	if (!player)
@@ -26,14 +25,19 @@ t_player	*set_player(int *location, char dir)
 	player->dir[1] = 0;
 	player->plane[0] = 0;
 	player->plane[1] = 0.66;
-	seta = 0;
+	player->location_x = x;
+	player->mouse_switch = 0;
+	player->i = -1;
+	while (++player->i < 8)
+		player->key[player->i] = 0;
+	player->seta = 0;
 	if (dir == 'W')
-		seta = 90;
+		player->seta = 90;
 	else if (dir == 'S')
-		seta = 180;
+		player->seta = 180;
 	else if (dir == 'E')
-		seta = -90;
-	eyesight_lr(player, seta * 3.14 / 180);
+		player->seta = -90;
+	eyesight_lr(player, player->seta * 3.14 / 180);
 	return (player);
 }
 
@@ -117,5 +121,16 @@ char		change_door_state(t_player *player, char **worldmap)
 	else if (worldmap[(int)pos[0]][(int)(pos[1] + 1)] == '3')
 		worldmap[(int)pos[0]][(int)(pos[1] + 1)] = '2';
 	player->key[7] = 0;
+	return (1);
+}
+
+char		rotate_mouse(t_player *player, double pi)
+{
+	if (player->i < player->location_x - 100)
+		eyesight_lr(player, pi * 1.5);
+	else if (player->i > player->location_x + 100)
+		eyesight_lr(player, pi * -1.5);
+	else
+		player->key[6] = 0;
 	return (1);
 }

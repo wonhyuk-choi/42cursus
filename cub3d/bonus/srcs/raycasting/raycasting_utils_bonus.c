@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*   raycasting_utils_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:41 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 21:26:43 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:26:33 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ char			hit_wall(t_dda *dda, char **map, double *pos)
 	int	s;
 
 	s = 0;
-	while (map[dda->map[0]][dda->map[1]] != '1' && map[dda->map[0]][dda->map[1]] != '2')
+	while (map[dda->map[0]][dda->map[1]] != '1'
+	&& map[dda->map[0]][dda->map[1]] != '2')
 	{
 		s = 0;
 		if (dda->sidedist[1] < dda->sidedist[0])

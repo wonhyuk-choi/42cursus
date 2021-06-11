@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 21:00:57 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/09 17:00:20 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 18:27:09 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 t_player	*set_player(int *location, char dir)
 {
 	t_player	*player;
-	double		seta;
 
 	player = malloc(sizeof(t_player));
 	if (!player)
@@ -26,14 +25,17 @@ t_player	*set_player(int *location, char dir)
 	player->dir[1] = 0;
 	player->plane[0] = 0;
 	player->plane[1] = 0.66;
-	seta = 0;
+	player->i = -1;
+	while (++player->i < 6)
+		player->key[player->i] = 0;
+	player->seta = 0;
 	if (dir == 'W')
-		seta = 90;
+		player->seta = 90;
 	else if (dir == 'S')
-		seta = 180;
+		player->seta = 180;
 	else if (dir == 'E')
-		seta = -90;
-	eyesight_lr(player, seta * 3.14 / 180);
+		player->seta = -90;
+	eyesight_lr(player, player->seta * 3.14 / 180);
 	return (player);
 }
 

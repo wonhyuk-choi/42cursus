@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.h                                       :+:      :+:    :+:   */
+/*   raycasting_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:55:02 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 21:26:00 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 20:35:36 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			set_wall_draw_point(t_dda *dda, t_parse *data);
 void			set_dda_value(t_dda *dda, t_player *player, int resolution
 , int x);
 char			hit_wall(t_dda *dda, char **map, double *pos);
-char			*select_texture(t_texture **texture, t_dda *dda, char door_flag);
+char			*select_texture(t_texture **texture, t_dda *dda
+, char door_flag);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   texture_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:24 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 20:52:24 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:22:09 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ t_texture		**set_texture(void *mlx, char **list)
 		t[i] = malloc(sizeof(t_texture));
 		if (!t[i])
 			return (0);
-		t[i]->image = mlx_png_file_to_image(mlx, list[i], &t[i]->size[0], &t[i]->size[1]);
+		t[i]->image = mlx_png_file_to_image(mlx, list[i], &t[i]->size[0]
+		, &t[i]->size[1]);
 		if (!t[i]->image)
 		{
 			free_texture(t, mlx);
 			return (0);
 		}
-		t[i]->adr = mlx_get_data_addr(t[i]->image, &(t[i]->bpp), &(t[i]->leng), &(t[i]->endi));
+		t[i]->adr = mlx_get_data_addr(t[i]->image, &(t[i]->bpp), &(t[i]->leng)
+		, &(t[i]->endi));
 		t[i]->bpp /= 8;
 	}
 	return (t);

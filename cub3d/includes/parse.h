@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:54:42 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 21:30:01 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:22:53 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct	s_parse
 	int			col_max;
 	char		direction;
 	char		**worldmap;
-	char		**texture_path; // texture[0] = NO, [1] = SO, [2] = WE, [3] = EA, [4] = S
+	char		**texture_path;
 	double		pi;
 }				t_parse;
 

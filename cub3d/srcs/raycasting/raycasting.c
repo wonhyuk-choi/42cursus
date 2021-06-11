@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:51:53 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 21:26:19 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 17:41:50 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 	int		x;
 	char	*dst;
 
-	//cub->image = mlx_new_image(cub->mlx, data->resol_x, data->resol_y);
-	//cub->adr = mlx_get_data_addr(cub->image, &(cub->bpp), &(cub->leng)
-	//, &(cub->endian));
-	//cub->bpp /= 8;
+	cub->image = mlx_new_image(cub->mlx, data->resol_x, data->resol_y);
+	cub->adr = mlx_get_data_addr(cub->image, &(cub->bpp), &(cub->leng)
+	, &(cub->endian));
+	cub->bpp /= 8;
 	x = -1;
 	dst = cub->adr;
 	while (++x < data->resol_x)
@@ -58,6 +58,6 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 		dst += cub->bpp;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->image, 0, 0);
-	//mlx_destroy_image(cub->mlx, cub->image);
+	mlx_destroy_image(cub->mlx, cub->image);
 	return (1);
 }

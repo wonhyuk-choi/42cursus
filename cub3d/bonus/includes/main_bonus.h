@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/11 17:17:37 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/11 17:17:38 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/12 02:13:47 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 # include "raycasting_bonus.h"
 
-char	*setting_program(t_cub3d **cub3d, char *map_path);
+char	*setting_program(t_cub3d *cub3d, char *map_path);
 void	free_cub3d(t_cub3d *cub3d);
 
 #endif

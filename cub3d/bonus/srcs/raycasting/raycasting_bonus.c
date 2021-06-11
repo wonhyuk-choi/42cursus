@@ -6,7 +6,7 @@
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:51:53 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/11 22:14:58 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/12 02:04:07 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,11 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 {
 	int		x;
 	char	*dst;
-	char	door_flag;
+	char	d_flag;
 
 	cub->image = mlx_new_image(cub->mlx, data->resol_x, data->resol_y);
+	if (!cub->image)
+		return (0);
 	cub->adr = mlx_get_data_addr(cub->image, &(cub->bpp), &(cub->leng)
 	, &(cub->endian));
 	cub->bpp /= 8;
@@ -104,15 +106,14 @@ char		ray_casting(t_cub3d *cub, t_player *player, t_parse *data)
 	while (++x < data->resol_x)
 	{
 		set_dda_value(cub->dda, player, data->resol_x, x);
-		door_flag = hit_wall(cub->dda, data->worldmap, player->pos);
+		d_flag = hit_wall(cub->dda, data->worldmap, player->pos);
 		set_wall_draw_point(cub->dda, data);
-		my_pixel_put(cub, dst, select_texture(cub->texture, cub->dda
-		, door_flag));
+		my_pixel_put(cub, dst, select_texture(cub->texture, cub->dda, d_flag));
 		dst += cub->bpp;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->window, cub->image, 0, 0);
+	mlx_destroy_image(cub->mlx, cub->image);
 	if (!draw_minimap(cub, cub->player))
 		return (0);
-	mlx_destroy_image(cub->mlx, cub->image);
 	return (1);
 }

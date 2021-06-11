@@ -6,7 +6,7 @@
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:24 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/11 21:47:04 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/12 01:58:48 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,5 @@ void			free_texture(t_texture **texture, void *mlx)
 		i++;
 	}
 	free(texture);
+	texture = 0;
 }

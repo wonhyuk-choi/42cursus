@@ -6,7 +6,7 @@ HEAD = -I includes -I minilibx
 
 BONUS_HEAD = -I bonus/includes -I minilibx
 
-FLAG = -Wall -Wextra -Werror $(HEAD) $(BONUS_HEAD)
+FLAG = -Wall -Wextra -Werror $(HEAD) $(BONUS_HEAD) -g3 -fsanitize=address
 
 RM = rm -rf
 

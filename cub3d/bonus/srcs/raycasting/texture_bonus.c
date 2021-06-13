@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture.c                                          :+:      :+:    :+:   */
+/*   texture_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:24 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 20:52:24 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/12 01:58:48 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "texture_bonus.h"
+
+static char		set_texture_img(t_texture *t, char *list, void *mlx)
+{
+	t->image = mlx_png_file_to_image(mlx, list, &t->size[0]
+	, &t->size[1]);
+	if (!t->image)
+		return (0);
+	t->adr = mlx_get_data_addr(t->image, &(t->bpp), &(t->leng)
+	, &(t->endi));
+	t->bpp /= 8;
+	return (1);
+}
 
 t_texture		**set_texture(void *mlx, char **list)
 {
@@ -28,14 +40,11 @@ t_texture		**set_texture(void *mlx, char **list)
 		t[i] = malloc(sizeof(t_texture));
 		if (!t[i])
 			return (0);
-		t[i]->image = mlx_png_file_to_image(mlx, list[i], &t[i]->size[0], &t[i]->size[1]);
-		if (!t[i]->image)
+		if (!set_texture_img(t[i], list[i], mlx))
 		{
 			free_texture(t, mlx);
 			return (0);
 		}
-		t[i]->adr = mlx_get_data_addr(t[i]->image, &(t[i]->bpp), &(t[i]->leng), &(t[i]->endi));
-		t[i]->bpp /= 8;
 	}
 	return (t);
 }
@@ -61,4 +70,5 @@ void			free_texture(t_texture **texture, void *mlx)
 		i++;
 	}
 	free(texture);
+	texture = 0;
 }

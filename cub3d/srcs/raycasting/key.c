@@ -6,7 +6,7 @@
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:52 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/09 16:29:19 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/11 16:32:11 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	active_apply(t_cub3d *cub3d)
 	data = cub3d->data;
 	flag = 0;
 	if (cub3d->player->key[0] == 1)
-		flag = move_ad(cub3d->player, data->worldmap, 0.3, data->pi);
+		flag = move_ad(cub3d->player, data->worldmap, 0.1, data->pi);
 	else if (cub3d->player->key[2] == 1)
-		flag = move_ad(cub3d->player, data->worldmap, -0.3, data->pi);
+		flag = move_ad(cub3d->player, data->worldmap, -0.1, data->pi);
 	if (cub3d->player->key[1] == 1)
-		flag = move_ws(cub3d->player, data->worldmap, -0.3);
+		flag = move_ws(cub3d->player, data->worldmap, -0.1);
 	else if (cub3d->player->key[3] == 1)
-		flag = move_ws(cub3d->player, data->worldmap, 0.3);
+		flag = move_ws(cub3d->player, data->worldmap, 0.1);
 	if (cub3d->player->key[4] == 1)
 		flag = eyesight_lr(cub3d->player, data->pi * 1.5);
 	else if (cub3d->player->key[5] == 1)

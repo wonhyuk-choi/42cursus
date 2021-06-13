@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taewakim <taewakim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/04 20:52:06 by taewakim          #+#    #+#             */
-/*   Updated: 2021/06/04 20:52:07 by taewakim         ###   ########.fr       */
+/*   Updated: 2021/06/12 02:13:55 by taewakim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 static void		error_print(t_cub3d *cub3d, char *message)
 {
-	if (cub3d)
-		free_cub3d(cub3d);
+	free_cub3d(cub3d);
 	printf("Error\nmessage : %s\n", message);
 	exit(1);
 }
@@ -32,15 +31,16 @@ static void		run_program(t_cub3d *cub3d)
 
 int				main(int argc, char **argv)
 {
-	t_cub3d *cub3d;
+	t_cub3d cub3d;
 	char	*err_message;
 
 	if (argc != 2)
 		error_print(0, "Invalid argument");
 	err_message = setting_program(&cub3d, *(argv + 1));
 	if (err_message)
-		error_print(cub3d, err_message);
+		error_print(&cub3d, err_message);
 	printf("complete parse\n");
-	ray_casting(cub3d, cub3d->player, cub3d->data);
-	run_program(cub3d);
+	if (!ray_casting(&cub3d, cub3d.player, cub3d.data))
+		error_print(&cub3d, "raycasting malloc error");
+	run_program(&cub3d);
 }

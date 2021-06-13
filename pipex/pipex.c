@@ -6,11 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 16:10:10 by wonchoi           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/06/08 17:59:22 by wonchoi          ###   ########.fr       */
-=======
-/*   Updated: 2021/06/08 18:44:00 by wonchoi          ###   ########.fr       */
->>>>>>> b85f5bb02d730ba35f5e4caa90ef3af449a4184a
+/*   Updated: 2021/06/11 13:43:35 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +40,8 @@ static void	cmd_run(char *argv)
 	i = 0;
 	cmd_init(argv, &frame);
 	while (i < 5)
-<<<<<<< HEAD
-	{
-		execve(frame->cmd[i++], frame->argv, frame->envp);
-	}
-	perror(frame->argv[0]);
-=======
 		execve(frame.cmd[i++], frame.argv, NULL);
 	perror(frame.argv[0]);
->>>>>>> b85f5bb02d730ba35f5e4caa90ef3af449a4184a
 }
 
 int			main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 16:10:05 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/08 18:41:49 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/15 19:25:59 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ typedef struct	s_cmd
 int				error_wrtie(char *str);
 int				show_error(char *str);
 void			redirect_in_child(char *file);
-void			redirect_in_parent(char *file);
+void			redirect_out_parent(char *file);
 
 #endif

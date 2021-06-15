@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.c                                         :+:      :+:    :+:   */
+/*   pipex_error_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 17:32:14 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 19:25:53 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/06/15 13:36:45 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/06/15 14:59:41 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	redirect_in_child(char *file)
+int	error_wrtie(char *str)
 {
-	int	fd;
-
-	if ((fd = open(file, O_RDONLY)) < 0)
-		show_error("open file1 error");
-	dup2(fd, 0);
-	close(fd);
+	ft_putstr_fd(str, 1);
+	write(2, "\n", 1);
+	return (1);
 }
 
-void	redirect_out_parent(char *file)
+int	show_error(char *str)
 {
-	int	fd;
-
-	if ((fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777)) < 0)
-		show_error("open file2 error");
-	dup2(fd, 1);
-	close(fd);
+	perror(str);
+	return (1);
 }

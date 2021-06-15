@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.c                                         :+:      :+:    :+:   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 17:32:14 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 19:25:53 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/06/15 19:07:04 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/06/15 19:15:56 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "fractol.h"
 
-void	redirect_in_child(char *file)
+int	draw_mandelbrot(double r, double i, t_data *data)
 {
-	int	fd;
+	int		j;
+	double	m_r;
+	double	m_i;
+	double	tmp;
 
-	if ((fd = open(file, O_RDONLY)) < 0)
-		show_error("open file1 error");
-	dup2(fd, 0);
-	close(fd);
-}
-
-void	redirect_out_parent(char *file)
-{
-	int	fd;
-
-	if ((fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777)) < 0)
-		show_error("open file2 error");
-	dup2(fd, 1);
-	close(fd);
+	j = 0;
+	m_i = 0;
+	m_r = 0;
+	while (j < data->max && m_r * m_r + m_i * m_i < 4)
+	{
+		tmp = m_r;
+		m_r = tmp * tmp - m_i * m_i + r;
+		m_i = 2 * tmp * m_i + i;
+		j++;
+	}
+	return (j);
 }

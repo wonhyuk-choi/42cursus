@@ -1,16 +1,24 @@
 NAME = fractol
 
-HEADER = -I includes -I minilibx
+HEADER = -I includes -I minilibx -I libft
 
-CC = gcc
+CC = gcc -g3 -fsanitize=address
 
-CFLAGS = -Wall -Wextra -Werror $(HEADER)
+CFLAGS =  $(HEADER)
 
-LIB = minilibx
+LIB_MLX = minilibx
+
+LIB_LIBFT = libft
 
 RM = -rm -rf
 
-SRCS = srcs/fractol.c	\
+SRCS =	srcs/fractol.c			\
+		srcs/function.c			\
+		srcs/setting_value.c	\
+		srcs/julia.c			\
+		srcs/mandelbrot.c		\
+		srcs/burning_ship.c		\
+		srcs/key.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -21,15 +29,18 @@ all : $(NAME)
 
 $(NAME) : $(OBJS)
 		make -C minilibx
+		make -C libft
 		cp minilibx/libmlx.dylib libmlx.dylib
-		$(CC) $(CFLAGS) $(OBJS) libmlx.dylib -o $(NAME)
+		cp libft/libft.a libft.a
+		$(CC) $(CFLAGS) $(OBJS) libmlx.dylib libft.a -o $(NAME)
 
 clean :
 		$(RM) $(OBJS)
 
 fclean : clean
 		make clean -C minilibx
-		$(RM) $(NAME) libmlx.dylib
+		make clean -C libft
+		$(RM) $(NAME) libmlx.dylib libft.a
 
 re : fclean all
 

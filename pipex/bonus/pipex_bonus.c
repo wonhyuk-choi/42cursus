@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 16:10:10 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 19:33:46 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/06/15 13:30:39 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/06/15 14:59:39 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static void	pipe_connect(int pipe_fd[2], int io)
 {
@@ -44,35 +44,29 @@ static void	cmd_run(char *argv)
 	perror(frame.argv[0]);
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		pipe_fd[2];
 	pid_t	pid;
 	int		status;
 
-	if (argc != 5)
-		return (error_wrtie("style : ./pipex file1 cmd1 cmd2 file2"));
 	if (pipe(pipe_fd) == -1)
-		return (error_wrtie("pipe fail!"));
-	if ((pid = fork()) < 0)
-		return (error_wrtie("fork fail!"));
-	if (pid == 0)
+		return (error_write("pipe fail"));
+	if (pid = fork() < 0)
+		return (error_write("fork fail"));
+	while (argc - 2 > 0)
 	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) == 0)
+		if (pid > 0)
 		{
-			printf("exit\n");
-			exit(1);
+			if (waitpid(pid, &status, 0) == 0)
+				return (error_write("waitpid error"));
+			pipe_connect(pipe_fd, 1);
 		}
-		redirect_in_child(argv[1]);
-		pipe_connect(pipe_fd, 1);
-		cmd_run(argv[2]);
-	}
-	else if (pid > 0)
-	{
-		redirect_out_parent(argv[4]);
-		pipe_connect(pipe_fd, 0);
-		cmd_run(argv[3]);
+		else if (pid == 0)
+		{
+		
+		}
+		argc--;
 	}
 	return (0);
 }

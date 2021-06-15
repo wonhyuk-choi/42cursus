@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirect.c                                         :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/07 17:32:14 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 19:25:53 by wonchoi          ###   ########.fr       */
+/*   Created: 2021/06/15 13:31:33 by wonchoi           #+#    #+#             */
+/*   Updated: 2021/06/15 14:59:41 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
-void	redirect_in_child(char *file)
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <stdlib.h>
+# include "../libft/libft.h"
+
+typedef struct	s_cmd
 {
-	int	fd;
+	const char		*cmd[5];
+	char* const		*argv;
+}				t_cmd;
 
-	if ((fd = open(file, O_RDONLY)) < 0)
-		show_error("open file1 error");
-	dup2(fd, 0);
-	close(fd);
-}
-
-void	redirect_out_parent(char *file)
-{
-	int	fd;
-
-	if ((fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777)) < 0)
-		show_error("open file2 error");
-	dup2(fd, 1);
-	close(fd);
-}
+#endif

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 01:40:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 20:47:51 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/18 17:00:00 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	free_data(t_data *data)
 	return (0);
 }
 
-int			main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 
@@ -51,7 +51,6 @@ int			main(int argc, char **argv)
 			return (write_error("fractol malloc error"));
 		if (!init_data(data, *argv))
 			return (write_error("init_data error"));
-
 		fractol(data, 0, -1, -1);
 		run_program(data);
 	}

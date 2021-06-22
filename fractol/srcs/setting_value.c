@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:21:31 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 20:59:07 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:35:04 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ static char	ft_strcmp(char *s1, char *s2, int leng)
 
 void	data_setting(t_data *data)
 {
-	data->zoom = 3;
-
+	data->zoom = 4;
 	data->ratio_x = data->zoom / (double)data->w;
 	data->ratio_y = data->zoom / (double)data->h;
 	data->r = -data->zoom * 0.5;
@@ -39,7 +38,9 @@ void	data_setting(t_data *data)
 	data->mr = 0;
 	data->mi = 0;
 	data->max = 100;
+	data->color_range = 0;
 }
+
 int	set_value(t_data *data, int key)
 {
 	double	num;

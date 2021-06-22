@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:39:22 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 20:41:48 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/18 17:14:13 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ int	key_press(int key, t_data *data)
 	{
 		free_data(data);
 		exit(0);
+	}
+	if (key == 8)
+	{
+		data->color_range = (data->color_range + 1) % 3;
+		fractol(data, 0, -1, -1);
 	}
 	return (0);
 }

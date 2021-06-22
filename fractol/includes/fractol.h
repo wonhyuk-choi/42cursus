@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 01:42:08 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 20:27:24 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/18 17:15:06 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_data
 	int		w;
 	int		h;
 	int		max;
+	int		color_range;
 	double	zoom;
 	double	ratio_x;
 	double	ratio_y;
@@ -50,7 +51,7 @@ int				set_value(t_data *data, int key);
 int				init_data(t_data *data, char *name);
 int				check_param(char *str);
 
-void			draw(int max, int flag, char *dst);
+void			draw(t_data *data, int max, int flag, char *dst);
 void			fractol(t_data *data, int key, int x, int y);
 
 int				draw_julia(double r, double i, t_data *data);

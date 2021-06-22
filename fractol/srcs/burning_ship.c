@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 20:10:51 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/18 01:11:43 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:51:06 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ int	draw_burningship(double r, double i, t_data *data)
 	}
 	return (j);
 }
-	

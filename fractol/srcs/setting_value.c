@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:21:31 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 15:35:04 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:53:42 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	ft_strcmp(char *s1, char *s2, int leng)
 	return (0);
 }
 
-void	data_setting(t_data *data)
+void		data_setting(t_data *data)
 {
 	data->zoom = 4;
 	data->ratio_x = data->zoom / (double)data->w;
@@ -41,7 +41,7 @@ void	data_setting(t_data *data)
 	data->color_range = 0;
 }
 
-int	set_value(t_data *data, int key)
+int			set_value(t_data *data, int key)
 {
 	double	num;
 
@@ -57,12 +57,13 @@ int	set_value(t_data *data, int key)
 	data->i = -data->zoom * 0.5;
 	if (!(data->image = mlx_new_image(data->mlx, data->w, data->h)))
 		return (0);
-	data->adr = mlx_get_data_addr(data->image, &(data->bpp), &(data->len), &(data->endian));
+	data->adr = mlx_get_data_addr(data->image, &(data->bpp)
+		, &(data->len), &(data->endian));
 	data->bpp /= 8;
 	return (1);
 }
 
-int	init_data(t_data *data, char *name)
+int			init_data(t_data *data, char *name)
 {
 	if (!(data->mlx = mlx_init()))
 		return (0);
@@ -78,7 +79,7 @@ int	init_data(t_data *data, char *name)
 	return (1);
 }
 
-int	check_param(char *str)
+int			check_param(char *str)
 {
 	int	check;
 	int flag;

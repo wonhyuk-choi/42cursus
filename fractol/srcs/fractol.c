@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 01:40:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/18 17:00:00 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 16:04:04 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static void	run_program(t_data *data)
 	mlx_loop(data->mlx);
 }
 
-int	write_error(char *str)
+int			write_error(char *str)
 {
 	ft_putstr_fd(str, 1);
 	write(2, "\n", 1);
 	return (1);
 }
 
-int	free_data(t_data *data)
+int			free_data(t_data *data)
 {
 	if (!data)
 		return (0);
@@ -41,7 +41,7 @@ int	free_data(t_data *data)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_data	*data;
 
@@ -54,5 +54,6 @@ int	main(int argc, char **argv)
 		fractol(data, 0, -1, -1);
 		run_program(data);
 	}
-	return (write_error("./fractol list\n1. Julia\n2. Mandelbrot"));
+	return (write_error("./fractol list\n1. Julia\n2. Mandelbrot\n	\
+	3. Burningship"));
 }

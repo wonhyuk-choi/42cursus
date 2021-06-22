@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:21:02 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 15:47:02 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:53:06 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	fractol(t_data *data, int key, int x, int y)
 	int		flag;
 
 	if (!(set_value(data, key)))
-		exit (1);
+		exit(1);
 	name = name_check(data);
 	while (++y < data->h)
 	{
@@ -81,8 +81,8 @@ void	fractol(t_data *data, int key, int x, int y)
 		while (++x < data->w)
 		{
 			flag = name_to_flag_check(data, r, name);
-			draw(data, data->max, flag, data->adr + y * data->len \
-			 + x * data->bpp);
+			draw(data, data->max, flag, data->adr + y * data->len
+				+ x * data->bpp);
 			r += data->ratio_x;
 		}
 		data->i += data->ratio_y;

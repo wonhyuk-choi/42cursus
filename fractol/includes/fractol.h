@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 01:42:08 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/18 17:15:06 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:54:38 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				draw_mandelbrot(double r, double i, t_data *data);
 int				draw_burningship(double r, double i, t_data *data);
 
 int				mouse_press(int key, int x, int y, t_data *data);
-int				mouse_pos(int, int y, t_data *data);
+int				mouse_pos(int x, int y, t_data *data);
 int				x_icon(t_data *data);
 int				key_press(int key, t_data *data);
 

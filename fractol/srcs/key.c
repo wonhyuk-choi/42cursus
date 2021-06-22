@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:39:22 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/18 17:14:13 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:52:49 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	mouse_press(int key, int x, int y, t_data *data)
 		fractol(data, key, -1, -1);
 	return (0);
 }
+
 int	mouse_pos(int x, int y, t_data *data)
 {
 	if (data->fractol == 'J' && 0 <= x && x < data->w && 0 <= y && y < data->h)

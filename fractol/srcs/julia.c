@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:41:25 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 20:22:35 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 15:50:26 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	draw_julia(double r, double i, t_data *data)
 	{
 		tmp = r;
 		r = tmp * tmp - i * i + data->mr;
-		i = 2 * tmp * i + data->mi;	
+		i = 2 * tmp * i + data->mi;
 		j++;
 	}
 	return (j);

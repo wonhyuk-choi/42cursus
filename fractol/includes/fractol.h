@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 01:42:08 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 15:54:38 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 16:14:15 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct	s_data
 	double	mi;
 }				t_data;
 
-int				write_error(char *str);
+int				w_error(char *str);
 int				free_data(t_data *data);
 
 void			data_setting(t_data *data);

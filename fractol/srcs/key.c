@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 17:39:22 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 15:52:49 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 18:29:15 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	mouse_pos(int x, int y, t_data *data)
 int	x_icon(t_data *data)
 {
 	free_data(data);
+	system("leaks fractol > leaks_result; cat leaks_result | grep leaked && rm -rf leaks_result");
+	pause();
 	exit(0);
 	return (0);
 }

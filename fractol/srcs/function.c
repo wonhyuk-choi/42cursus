@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:21:02 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 15:53:06 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 18:22:12 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		name_to_flag_check(t_data *data, double r, int name)
 {
 	int	flag;
 
+	flag = 0;
 	if (name == 1)
 		flag = draw_julia(r, data->i, data);
 	else if (name == 2)

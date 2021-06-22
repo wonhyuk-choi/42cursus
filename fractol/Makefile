@@ -2,7 +2,7 @@ NAME = fractol
 
 HEADER = -I includes -I minilibx -I libft
 
-CC = gcc -g3 -fsanitize=address
+CC = gcc
 
 CFLAGS =  $(HEADER)
 

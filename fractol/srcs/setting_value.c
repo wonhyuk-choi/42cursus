@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/15 16:21:31 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 15:53:42 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 18:22:44 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int			init_data(t_data *data, char *name)
 int			check_param(char *str)
 {
 	int	check;
-	int flag;
 
 	check = 0;
 	while (*(str + check))

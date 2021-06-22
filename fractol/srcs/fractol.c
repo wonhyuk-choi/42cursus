@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/14 01:40:27 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/22 16:14:50 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/06/22 18:29:06 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int			free_data(t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->mlx)
 		free(data->mlx);
+	if (data)
+		free(data);
 	return (0);
 }
 
@@ -51,7 +53,7 @@ int			main(int argc, char **argv)
 			return (w_error("fractol malloc error"));
 		if (!init_data(data, *argv))
 			return (w_error("init_data error"));
-		fractol(data, 0, -1, -1);
+		fractol(data, 0, -1, -1);	
 		run_program(data);
 	}
 	return (w_error("./fractol list\n1. Julia\n2. Mandelbrot\n3. Burningship"));

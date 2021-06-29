@@ -1,1 +1,1 @@
-# curcus
+# cursus

@@ -6,73 +6,82 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/07 16:10:10 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/06/15 19:33:46 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/07/14 23:16:23 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static void	pipe_connect(int pipe_fd[2], int io)
+void	execute_cmd1(t_pipex *pipex)
 {
-	dup2(pipe_fd[io], io);
-	close(pipe_fd[0]);
-	close(pipe_fd[1]);
+	dup2(pipex->fd1, 0);
+	dup2(pipex->fd[1], 1);
+	close(pipex->fd[1]);
+	close(pipex->fd[0]);
+	execve(pipex->cmd1, pipex->cmd1_arg, pipex->env);
 }
 
-static void	cmd_init(const char *cmd, t_cmd *frame)
+void	execute_cmd2(t_pipex *pipex)
 {
-	char	**tmp;
-
-	tmp = ft_split(cmd, ' ');
-	frame->cmd[0] = ft_strjoin("/bin/", tmp[0]);
-	frame->cmd[1] = ft_strjoin("/usr/local/bib/", tmp[0]);
-	frame->cmd[2] = ft_strjoin("/usr/bin/", tmp[0]);
-	frame->cmd[3] = ft_strjoin("/usr/sbin/", tmp[0]);
-	frame->cmd[4] = ft_strjoin("/sbin/", tmp[0]);
-	frame->argv = (char *const *)tmp;
+	dup2(pipex->fd2, 1);
+	dup2(pipex->fd[0], 0);
+	close(pipex->fd[0]);
+	execve(pipex->cmd2, pipex->cmd2_arg, pipex->env);
 }
 
-static void	cmd_run(char *argv)
+void	start_pipex(t_pipex *pipex)
 {
-	int	i;
-	t_cmd	frame;
+	int	pid;
 
-	i = 0;
-	cmd_init(argv, &frame);
-	while (i < 5)
-		execve(frame.cmd[i++], frame.argv, NULL);
-	perror(frame.argv[0]);
-}
-
-int			main(int argc, char **argv)
-{
-	int		pipe_fd[2];
-	pid_t	pid;
-	int		status;
-
-	if (argc != 5)
-		return (error_wrtie("style : ./pipex file1 cmd1 cmd2 file2"));
-	if (pipe(pipe_fd) == -1)
-		return (error_wrtie("pipe fail!"));
-	if ((pid = fork()) < 0)
-		return (error_wrtie("fork fail!"));
+	pid = fork();
+	if (pid == -1)
+		error_print("Fork fail!", 1);
+	else if (pid == 0)
+		execute_cmd1(pipex);
+	close(pipex->fd[1]);
+	pid = fork();
 	if (pid == 0)
+		execute_cmd2(pipex);
+	close(pipex->fd[0]);
+	waitpid(pipex->fd[0], &(pipex->fd_status), 0);
+	waitpid(pipex->fd[1], &(pipex->fd_status), 0);
+}
+
+void	pipe_check(t_pipex **pipex)
+{
+	if ((*pipex)->fd1 < 0)
+		error_print(strerror(errno), 1);
+	if ((*pipex)->fd2 < 0)
+		error_print(strerror(errno), 1);
+	(*pipex)->cmd1_arg = ft_split((*pipex)->cmd1, ' ');
+	search_cmd_path(pipex, 1);
+	(*pipex)->cmd2_arg = ft_split((*pipex)->cmd2, ' ');
+	search_cmd_path(pipex, 2);
+}
+
+int	main(int argc, char **argv, char **env)
+{
+	t_pipex	*pipex;
+
+	pipex = NULL;
+	if (argc == 5)
 	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status) == 0)
-		{
-			printf("exit\n");
-			exit(1);
-		}
-		redirect_in_child(argv[1]);
-		pipe_connect(pipe_fd, 1);
-		cmd_run(argv[2]);
+		pipex = malloc(sizeof(t_pipex));
+		if (pipe(pipex->fd) == -1)
+			error_print("Pipe error", 1);
+		pipex->fd1 = open(argv[1], O_RDONLY);
+		pipex->fd2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		pipex->env = env;
+		pipex->cmd1 = argv[2];
+		pipex->cmd2 = argv[3];
+		pipe_check(&pipex);
+		start_pipex(pipex);
+		close(pipex->fd1);
+		close(pipex->fd2);
 	}
-	else if (pid > 0)
-	{
-		redirect_out_parent(argv[4]);
-		pipe_connect(pipe_fd, 0);
-		cmd_run(argv[3]);
-	}
+	else
+		error_print("style : ./pipex file1 cmd1 cmd2 file2", 1);
+	if (WIFEXITED(pipex->fd_status))
+		return (WEXITSTATUS(pipex->fd_status));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wonchoi <wonchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 17:27:44 by wonchoi           #+#    #+#             */
-/*   Updated: 2021/07/11 23:57:41 by wonchoi          ###   ########.fr       */
+/*   Updated: 2021/07/14 18:29:57 by wonchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ void	fork_destroy(pthread_mutex_t *fork, t_status *status)
 	free(fork);
 }
 
+int	error_print(char *str)
+{
+	printf("%s\n", str);
+	return (1);
+}
+
+int	normal_print(char *str)
+{
+	printf("%s\n", str);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_status		status;
@@ -59,12 +71,15 @@ int	main(int argc, char **argv)
 	pthread_mutex_t	print;
 
 	if (argc < 5 || argc > 6)
-		return (-1);
+		return (error_print("Wrong Argument"));
 	if (parse_arg(&status, argc, argv) == -1)
-		return (-1);
+		return (error_print("Parse Error!"));
+	else if (status.max_eat == 0)
+		return (normal_print("All philosopher ate!"));
 	fork = init_fork(&status);
 	pthread_mutex_init(&print, NULL);
-	start_thread(&status, fork, &print);
+	if (!fork || !start_thread(&status, fork, &print))
+		return (error_print("Fork or Thread Error!"));
 	fork_destroy(fork, &status);
 	pthread_mutex_destroy(&print);
 	return (0);

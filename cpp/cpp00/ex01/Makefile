@@ -6,17 +6,19 @@
 #    By: wonchoi <wonchoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/06 12:00:52 by wonchoi           #+#    #+#              #
-#    Updated: 2022/05/06 14:24:56 by wonchoi          ###   ########.fr        #
+#    Updated: 2022/05/18 18:08:23 by wonchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
+
+HEADER = PhoneBook.hpp
 
 CC = c++
 
 FLAG = -std=c++98 -Wall -Wextra -Werror
 
-SRCS = megaphone.cpp
+SRCS = PhoneBook.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -24,7 +26,7 @@ RM = -rm -rf
 
 all	: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(HEADER)
 	$(CC) $(FLAG) -o $(NAME) $(OBJS)
 
 %.o: %.c
